@@ -3,5 +3,9 @@ import { createChurchOutputDTO } from "../../services/churchs/dtos/createChurchO
 
 export interface IChurchRepository {
   findByDocument(cnpj: string): Promise<ChurchEntity>;
-  save(church: ChurchEntity): Promise<createChurchOutputDTO>;
+  create(church: ChurchEntity): Promise<createChurchOutputDTO>;
+  // getById(id: number): Promise<ChurchEntity | null>;
+  // getAll(): Promise<ChurchEntity[]>;
+  // update(user: ChurchEntity): Promise<ChurchEntity>;
+  // delete(id: number): Promise<void>;
 }

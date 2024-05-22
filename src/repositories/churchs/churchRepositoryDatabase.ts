@@ -1,14 +1,15 @@
+import { AppDataSource } from "../../data-source";
 import { ChurchEntity } from "../../entities/churchEntity";
 import { IChurchRepository } from "./IchurchRepository";
 
 export class ChurchRepositoryDatabase implements IChurchRepository {
-  private churchs: ChurchEntity[] = [];
-  async save(payload: ChurchEntity): Promise<ChurchEntity> {
-    this.churchs.push(payload);
-    return payload;
+  churchRepository = AppDataSource.getRepository(ChurchEntity);
+
+  async create(payload: ChurchEntity): Promise<ChurchEntity> {
+    return await this.churchRepository.save(payload);
   }
 
-  public async findByDocument(document: string): Promise<ChurchEntity> {
-    return this.churchs.find((church) => church.cnpj === document);
+  async findByDocument(cnpj: string): Promise<ChurchEntity> {
+    return this.churchRepository.findOne({ where: { cnpj: cnpj } });
   }
 }

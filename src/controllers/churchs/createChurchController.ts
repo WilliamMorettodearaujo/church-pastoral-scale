@@ -1,28 +1,19 @@
-import { Request, Response } from "express";
-import { ValidationException } from "../../exceptions/validationException";
-import Registry from "../../registry/Registry";
+import { NextFunction, Request, Response } from "express";
 import { ChurchRepositoryDatabase } from "../../repositories/churchs/churchRepositoryDatabase";
 import { CreateChurchServices } from "../../services/churchs/createChurchServices";
 
 export class CreateChurchController {
-  public async handle(req: Request, res: Response) {
+  public async handle(req: Request, res: Response, next: NextFunction) {
     try {
-      const registry = new Registry();
-      registry.provide("IChurchRepository", new ChurchRepositoryDatabase());
+      const churchRepository = new ChurchRepositoryDatabase();
+
       const payload = req.body;
-      const service = new CreateChurchServices(registry);
+      const service = new CreateChurchServices(churchRepository);
       const output = await service.execute(payload);
 
       res.json(output);
     } catch (error) {
-      if (error instanceof ValidationException) {
-        res.status(error.statusCode).json({
-          error: "Erro de validação",
-          details: error.details,
-        });
-      } else {
-        res.status(500).json({ error: "Erro interno do servidor" });
-      }
+      next(error);
     }
   }
 }

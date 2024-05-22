@@ -8,13 +8,12 @@ export class ChurchEntity extends BasisEntity {
     type: "varchar",
     length: 80,
     nullable: true,
-    default: null,
   })
-  name?: string;
+  name: string;
 
   @Column({ type: "varchar", length: 20, nullable: true, default: null })
   cnpj: string;
 
   @Column({ type: "varchar", length: 20, nullable: true, default: null })
-  ie?: string;
+  ie: string;
 }

@@ -1,9 +1,13 @@
-import { Request, Response, Router } from "express";
+import { NextFunction, Request, Response, Router } from "express";
 import { CreateChurchController } from "../controllers/churchs/createChurchController";
+import { use } from "./middlewares/exeptions";
 
 export const churchRoutes = Router();
 
-churchRoutes.post("/", (req: Request, res: Response) => {
-  const controller = new CreateChurchController();
-  controller.handle(req, res);
-});
+churchRoutes.post(
+  "/",
+  use((req: Request, res: Response, next: NextFunction) => {
+    const controller = new CreateChurchController();
+    controller.handle(req, res, next);
+  })
+);

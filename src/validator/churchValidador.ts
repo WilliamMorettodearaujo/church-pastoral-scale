@@ -1,4 +1,3 @@
-import { cnpj, cpf } from "cpf-cnpj-validator";
 import joi from "joi";
 
 import { CreateChurchInputDTO } from "../services/churchs/dtos/createChurchInputDTO";
@@ -13,47 +12,47 @@ export class ChurchValidador {
       .object()
       .keys({
         name: joi.string().required(),
-        document: joi
-          .string()
-          .required()
-          .custom((value, helpers) => {
-            if (value.length === 11 && cpf.isValid(value)) {
-              return value;
-            } else if (value.length === 14 && cnpj.isValid(value)) {
-              return value;
-            } else {
-              return helpers.error("any.invalid");
-            }
-          }),
+        // document: joi
+        //   .string()
+        //   .required()
+        //   .custom((value, helpers) => {
+        //     if (value.length === 11 && cpf.isValid(value)) {
+        //       return value;
+        //     } else if (value.length === 14 && cnpj.isValid(value)) {
+        //       return value;
+        //     } else {
+        //       return helpers.error("any.invalid");
+        //     }
+        //   }),
         ie: joi.string().required(),
-        address: joi.string().required(),
-        neighborhood: joi.string().required(),
-        number: joi.string().required(),
-        complement: joi.string(),
-        city: joi.string().required(),
-        uf: joi.string().length(2).required(),
-        codepostal: joi
-          .string()
-          .required()
-          .custom((value, helpers) => {
-            if (value.length !== 8) {
-              return helpers.error("string.length");
-            }
+        // address: joi.string().required(),
+        // neighborhood: joi.string().required(),
+        // number: joi.string().required(),
+        // complement: joi.string(),
+        // city: joi.string().required(),
+        // uf: joi.string().length(2).required(),
+        // codepostal: joi
+        //   .string()
+        //   .required()
+        //   .custom((value, helpers) => {
+        //     if (value.length !== 8) {
+        //       return helpers.error("string.length");
+        //     }
 
-            return value;
-          }),
-        representative_name: joi.string().required(),
-        phone: joi
-          .string()
-          .required()
-          .custom((value, helpers) => {
-            if (value.length !== 11) {
-              return helpers.error("string.length");
-            }
-            return value;
-          }),
-        email: joi.string().email().required(),
-        enabled: joi.boolean(),
+        //     return value;
+        //   }),
+        // representative_name: joi.string().required(),
+        // phone: joi
+        //   .string()
+        //   .required()
+        //   .custom((value, helpers) => {
+        //     if (value.length !== 11) {
+        //       return helpers.error("string.length");
+        //     }
+        //     return value;
+        //   }),
+        // email: joi.string().email().required(),
+        // enabled: joi.boolean(),
       })
       .required();
 
