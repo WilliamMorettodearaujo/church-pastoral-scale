@@ -6,11 +6,9 @@ export const exceptionMiddleware = (
   request: Request,
   response: Response,
   next: NextFunction
-) => {
-  if (error) {
-    response.status(error.statusCode).json({
-      error: "Erro de validação",
-      details: error.details,
-    });
-  }
+) => {  
+  response.status(error.statusCode).json({
+    error: error.message,
+    details: error.details,
+  });
 };
