@@ -1,20 +1,16 @@
 import { NextFunction, Request, Response } from "express";
-
-import { churchRepositoryTypeOrm } from "../../repositories/churchs/churchRepositoryTypeOrm";
+import { ChurchRepositoryDatabase } from "../../repositories/churchs/churchRepositoryDatabase";
 import { CreateChurchServices } from "../../services/churchs/createChurchServices";
 
 export class CreateChurchController {
   public async handle(req: Request, res: Response, next: NextFunction) {
     try {
-      const churchRepository = new churchRepositoryTypeOrm();
+      const churchRepository = new ChurchRepositoryDatabase();
 
-      const payload = req.body;
-      const service = new CreateChurchServices(churchRepository);
-      const output = await service.execute(payload);
+    const payload = req.body;
+    const service = new CreateChurchServices(churchRepository);
+    const output = await service.execute(payload);
 
-      res.json(output);
-    } catch (error) {
-      next(error);
-    }
+    res.json(output);
   }
 }
