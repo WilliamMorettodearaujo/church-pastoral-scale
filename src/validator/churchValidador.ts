@@ -1,5 +1,5 @@
+import { cnpj, cpf } from "cpf-cnpj-validator";
 import joi from "joi";
-
 import { CreateChurchInputDTO } from "../services/churchs/dtos/createChurchInputDTO";
 import { JoiSchemaValidador } from "./joiSchemaValidador";
 export class ChurchValidador {
@@ -12,18 +12,18 @@ export class ChurchValidador {
       .object()
       .keys({
         name: joi.string().required(),
-        // document: joi
-        //   .string()
-        //   .required()
-        //   .custom((value, helpers) => {
-        //     if (value.length === 11 && cpf.isValid(value)) {
-        //       return value;
-        //     } else if (value.length === 14 && cnpj.isValid(value)) {
-        //       return value;
-        //     } else {
-        //       return helpers.error("any.invalid");
-        //     }
-        //   }),
+        cnpj: joi
+          .string()
+          .required()
+          .custom((value, helpers) => {
+            if (value.length === 11 && cpf.isValid(value)) {
+              return value;
+            } else if (value.length === 14 && cnpj.isValid(value)) {
+              return value;
+            } else {
+              return helpers.error("any.invalid");
+            }
+          }),
         ie: joi.string().required(),
         // address: joi.string().required(),
         // neighborhood: joi.string().required(),

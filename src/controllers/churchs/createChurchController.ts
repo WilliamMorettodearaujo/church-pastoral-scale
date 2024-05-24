@@ -1,11 +1,12 @@
 import { NextFunction, Request, Response } from "express";
-import { ChurchRepositoryDatabase } from "../../repositories/churchs/churchRepositoryDatabase";
+
+import { churchRepositoryTypeOrm } from "../../repositories/churchs/churchRepositoryTypeOrm";
 import { CreateChurchServices } from "../../services/churchs/createChurchServices";
 
 export class CreateChurchController {
   public async handle(req: Request, res: Response, next: NextFunction) {
     try {
-      const churchRepository = new ChurchRepositoryDatabase();
+      const churchRepository = new churchRepositoryTypeOrm();
 
       const payload = req.body;
       const service = new CreateChurchServices(churchRepository);

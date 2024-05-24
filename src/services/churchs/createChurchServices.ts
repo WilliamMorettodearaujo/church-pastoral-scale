@@ -14,10 +14,14 @@ export class CreateChurchServices {
     ChurchValidador.handle([payload]);
 
     const documentAlreadyExists = await this.churchRepository.findByDocument(
-      payload.cnpj
+      payload.federalDocument
     );
     if (documentAlreadyExists) {
-      throw new ValidationException("", "Document already exists", 400);
+      throw new ValidationException(
+        "Schema inválido",
+        `Federal Document ${payload.federalDocument} already exists`,
+        400
+      );
     }
 
     const churchEntity = ChurchMapper.toEntity(payload);
