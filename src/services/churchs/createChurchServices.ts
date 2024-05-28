@@ -1,5 +1,4 @@
-import { ValidationException } from "../../exceptions/validationException";
-import { ChurchMapper } from "../../mappers/churchMapper";
+import { ExceptionHandler } from "../../exceptions/ExceptionHandler";
 import { IChurchRepository } from "../../repositories/churchs/IchurchRepository";
 import { ChurchValidador } from "../../validator/churchValidador";
 import { CreateChurchInputDTO } from "./dtos/createChurchInputDTO";
@@ -13,19 +12,19 @@ export class CreateChurchServices {
   ): Promise<createChurchOutputDTO> {
     ChurchValidador.handle([payload]);
 
-    const documentAlreadyExists = await this.churchRepository.findByDocument(
-      payload.federalDocument
-    );
+    const documentAlreadyExists =
+      await this.churchRepository.findByDocumentFederal(
+        payload.federalDocument
+      );
     if (documentAlreadyExists) {
-      throw new ValidationException(
-        "Schema inválido",
+      throw new ExceptionHandler(
+        "Error Federal Document",
         `Federal Document ${payload.federalDocument} already exists`,
         400
       );
     }
 
-    const churchEntity = ChurchMapper.toEntity(payload);
-    const church = await this.churchRepository.create(churchEntity);
+    const church = await this.churchRepository.create(payload);
 
     return {
       id: church.id,

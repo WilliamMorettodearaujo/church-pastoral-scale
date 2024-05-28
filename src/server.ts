@@ -13,15 +13,7 @@ app.use(express.json());
 app.use(router);
 
 AppDataSource.initialize()
-  .then(() => {
-    const app = express();
-
-    app.use(express.json());
-
-    app.use(router);
-
-    app.use(logger("dev"));
-
-    app.listen(portDB, () => console.log(`Api running on port ${portDB}`));
-  })
+  .then(() =>
+    app.listen(portDB, () => console.log(`Api running on port ${portDB}`))
+  )
   .catch((error) => console.log(error));

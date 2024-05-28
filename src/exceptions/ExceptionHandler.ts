@@ -1,4 +1,4 @@
-export class ValidationException extends Error {
+export class ExceptionHandler extends Error {
   details: string;
   statusCode: number;
 

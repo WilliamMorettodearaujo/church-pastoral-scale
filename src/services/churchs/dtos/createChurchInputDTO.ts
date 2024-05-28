@@ -1,3 +1,5 @@
+import { CityEntity } from "../../../entities/cityEntity";
+
 export interface CreateChurchInputDTO {
   corporateName: string;
   tradingName: string;
@@ -8,7 +10,7 @@ export interface CreateChurchInputDTO {
   complement: string;
   district: string;
   codepostal: string;
-  cityId: number;
+  cityId: CityEntity;
   phone: string;
   cell: string;
   email: string;
