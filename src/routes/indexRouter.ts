@@ -1,5 +1,6 @@
 import { Router } from "express";
 import { churchRoutes } from "./churchsRouter";
+import { federalUnitRoutes } from "./federalUnitRouter";
 import { exceptionMiddleware } from "./middlewares/exceptionMiddleware";
 
 export const router = Router();
@@ -15,5 +16,6 @@ router.get("/", (req, res) => {
 });
 
 router.use("/church", churchRoutes);
+router.use("/federal-unit", federalUnitRoutes);
 
 router.use(exceptionMiddleware);

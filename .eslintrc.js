@@ -38,7 +38,7 @@ module.exports = {
                 'variableDeclaration': false
             }
         ],
-        'max-len': ['error', { 'code': 100 }],
+
         '@typescript-eslint/naming-convention': [
             'error',
             {

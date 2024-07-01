@@ -7,4 +7,11 @@ export class FederalUnitEntity {
 
   @Column({ type: "varchar", length: 50 })
   name: string;
+
+  @Column({
+    name: "enabled",
+    type: "boolean",
+    default: true,
+  })
+  enabled: boolean;
 }
