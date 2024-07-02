@@ -1,5 +1,6 @@
 import { Router } from "express";
 import { churchRoutes } from "./churchsRouter";
+import { cityRoutes } from "./citiesRouter";
 import { federalUnitRoutes } from "./federalUnitRouter";
 import { exceptionMiddleware } from "./middlewares/exceptionMiddleware";
 
@@ -16,6 +17,7 @@ router.get("/", (req, res) => {
 });
 
 router.use("/church", churchRoutes);
+router.use("/city", cityRoutes);
 router.use("/federal-unit", federalUnitRoutes);
 
 router.use(exceptionMiddleware);

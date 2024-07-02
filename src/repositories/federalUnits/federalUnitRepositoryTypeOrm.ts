@@ -23,7 +23,7 @@ export class FederalUnitRepositoryTypeOrm implements IFederalUnitRepository {
       where: { uf: uf },
     });
     this.federalUnitRepository.merge(entity, federalUnit);
-    return await this.federalUnitRepository.save(federalUnit);
+    return await this.federalUnitRepository.save(entity);
   }
   async delete(uf: string): Promise<void> {
     await this.federalUnitRepository.delete(uf);
