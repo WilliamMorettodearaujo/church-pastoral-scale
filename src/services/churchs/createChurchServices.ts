@@ -18,16 +18,19 @@ export class CreateChurchServices {
       );
     if (documentAlreadyExists) {
       throw new ExceptionHandler(
-        "Error Federal Document",
+        "Error",
         `Federal Document ${payload.federalDocument} already exists`,
-        400
+        409
       );
     }
+    try {
+      const church = await this.churchRepository.create(payload);
 
-    const church = await this.churchRepository.create(payload);
-
-    return {
-      id: church.id,
-    };
+      return {
+        id: church.id,
+      };
+    } catch (error) {
+      throw new ExceptionHandler("Error", error.message, 500);
+    }
   }
 }

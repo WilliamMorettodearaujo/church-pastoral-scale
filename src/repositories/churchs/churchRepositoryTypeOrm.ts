@@ -1,6 +1,5 @@
 import { AppDataSource } from "../../data-source";
 import { ChurchEntity } from "../../entities/churchEntity";
-import { ExceptionHandler } from "../../exceptions/ExceptionHandler";
 
 import { IChurchRepository } from "./IchurchRepository";
 
@@ -8,12 +7,7 @@ export class ChurchRepositoryTypeOrm implements IChurchRepository {
   churchRepository = AppDataSource.getRepository(ChurchEntity);
 
   async create(payload: Partial<ChurchEntity>): Promise<ChurchEntity> {
-    try {
-      return await this.churchRepository.save(payload);
-    } catch (error) {
-      const errorMessage = `Failed to create ChurchEntity with federalDocument: ${payload.federalDocument}. Error: ${error.message}`;
-      throw new ExceptionHandler("Database Error", errorMessage, 500);
-    }
+    return await this.churchRepository.save(payload);
   }
 
   async findByDocumentFederal(
@@ -23,4 +17,20 @@ export class ChurchRepositoryTypeOrm implements IChurchRepository {
       where: { federalDocument: federalDocument },
     });
   }
+
+  async getById(id: number): Promise<ChurchEntity> {
+    return await this.churchRepository.findOne({ where: { id: id } });
+  }
+
+  // async getAll(): Promise<ChurchEntity[]> {
+  //   return await this.churchRepository.find();
+  // }
+
+  // async update(church: ChurchEntity): Promise<ChurchEntity> {
+  //   return await this.churchRepository.save(church);
+  // }
+
+  // async delete(id: number): Promise<void> {
+  //   await this.churchRepository.delete({where { id: id}});
+  // }
 }

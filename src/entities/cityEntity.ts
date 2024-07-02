@@ -15,4 +15,11 @@ export class CityEntity extends BasisEntity {
   @ManyToOne(() => FederalUnitEntity)
   @JoinColumn({ name: "uf", referencedColumnName: "uf" })
   uf: FederalUnitEntity;
+
+  @Column({
+    name: "enabled",
+    type: "boolean",
+    default: true,
+  })
+  enabled: boolean;
 }
