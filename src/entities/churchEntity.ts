@@ -79,7 +79,7 @@ export class ChurchEntity extends BasisEntity {
   @ManyToOne(() => CityEntity)
   @JoinColumn({ name: "city_id", referencedColumnName: "id" })
   @Column({
-    name: "cityId",
+    name: "city_id",
     type: "bigint",
     default: null,
   })
