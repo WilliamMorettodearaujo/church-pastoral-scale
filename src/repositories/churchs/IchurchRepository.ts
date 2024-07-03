@@ -3,8 +3,8 @@ import { ChurchEntity } from "../../entities/churchEntity";
 export interface IChurchRepository {
   create(church: Partial<ChurchEntity>): Promise<ChurchEntity>;
   getById(id: number): Promise<ChurchEntity | null>;
-  // getAll(): Promise<ChurchEntity[]>;
-  // update(user: ChurchEntity): Promise<ChurchEntity>;
-  // delete(id: number): Promise<void>;
+  getAll(): Promise<ChurchEntity[]>;
+  update(id: number, church: Partial<ChurchEntity>): Promise<ChurchEntity>;
+  delete(id: string): Promise<void>;
   findByDocumentFederal(federalDocument: string): Promise<ChurchEntity | null>;
 }

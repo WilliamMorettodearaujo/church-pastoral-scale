@@ -1,8 +1,8 @@
 import { AppDataSource } from "../../data-source";
 import { CityEntity } from "../../entities/cityEntity";
-import { IcityRepository } from "./IcitiesRepository";
+import { ICityRepository } from "./IcitiesRepository";
 
-export class CityRepositoryTypeOrm implements IcityRepository {
+export class CityRepositoryTypeOrm implements ICityRepository {
   cityRepository = AppDataSource.getRepository(CityEntity);
 
   async create(city: Partial<CityEntity>): Promise<CityEntity> {

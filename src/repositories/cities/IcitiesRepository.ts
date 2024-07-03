@@ -1,6 +1,6 @@
 import { CityEntity } from "../../entities/cityEntity";
 
-export interface IcityRepository {
+export interface ICityRepository {
   create(city: Partial<CityEntity>): Promise<CityEntity>;
   getByNameAndUf(city: Partial<CityEntity>): Promise<CityEntity | null>;
   getById(id: number): Promise<CityEntity | null>;

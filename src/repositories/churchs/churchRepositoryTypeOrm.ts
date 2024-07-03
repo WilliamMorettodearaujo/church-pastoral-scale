@@ -1,36 +1,42 @@
 import { AppDataSource } from "../../data-source";
 import { ChurchEntity } from "../../entities/churchEntity";
-
 import { IChurchRepository } from "./IchurchRepository";
 
 export class ChurchRepositoryTypeOrm implements IChurchRepository {
   churchRepository = AppDataSource.getRepository(ChurchEntity);
 
-  async create(payload: Partial<ChurchEntity>): Promise<ChurchEntity> {
-    return await this.churchRepository.save(payload);
-  }
-
-  async findByDocumentFederal(
-    federalDocument: string
-  ): Promise<ChurchEntity | null> {
-    return this.churchRepository.findOne({
-      where: { federalDocument: federalDocument },
-    });
+  async create(church: Partial<ChurchEntity>): Promise<ChurchEntity> {
+    return await this.churchRepository.save(church);
   }
 
   async getById(id: number): Promise<ChurchEntity> {
-    return await this.churchRepository.findOne({ where: { id: id } });
+    return await this.churchRepository.findOne({
+      where: { id: id },
+    });
   }
 
-  // async getAll(): Promise<ChurchEntity[]> {
-  //   return await this.churchRepository.find();
-  // }
+  async getAll(): Promise<ChurchEntity[]> {
+    return await this.churchRepository.find({});
+  }
 
-  // async update(church: ChurchEntity): Promise<ChurchEntity> {
-  //   return await this.churchRepository.save(church);
-  // }
+  async update(
+    id: number,
+    church: Partial<ChurchEntity>
+  ): Promise<ChurchEntity> {
+    const entity = await this.churchRepository.findOne({
+      where: { id: id },
+    });
+    this.churchRepository.merge(entity, church);
+    return await this.churchRepository.save(entity);
+  }
 
-  // async delete(id: number): Promise<void> {
-  //   await this.churchRepository.delete({where { id: id}});
-  // }
+  async delete(id: string): Promise<void> {
+    await this.churchRepository.delete(id);
+  }
+
+  async findByDocumentFederal(federalDocument: string): Promise<ChurchEntity> {
+    return await this.churchRepository.findOne({
+      where: { federalDocument: federalDocument },
+    });
+  }
 }

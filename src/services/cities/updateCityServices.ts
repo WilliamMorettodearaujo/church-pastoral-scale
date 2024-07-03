@@ -1,11 +1,11 @@
 import { ExceptionHandler } from "../../exceptions/ExceptionHandler";
-import { IcityRepository } from "../../repositories/cities/IcitiesRepository";
+import { ICityRepository } from "../../repositories/cities/IcitiesRepository";
 import { CityValidador } from "../../validator/cityValidador";
 import { CreateCityInputDTO } from "./dtos/createCityInputDTO";
 import { ListOutputCityDTO } from "./dtos/listOutputCityDTO";
 
 export class UpdateCityServices {
-  constructor(readonly cityRepository: IcityRepository) {}
+  constructor(readonly cityRepository: ICityRepository) {}
 
   public async execute(
     id: number,
