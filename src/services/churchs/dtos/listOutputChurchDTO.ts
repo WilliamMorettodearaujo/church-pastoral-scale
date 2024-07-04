@@ -1,5 +1,3 @@
-import { CityEntity } from "../../../entities/cityEntity";
-
 export interface ListOutputChurchDTO {
   id: number;
   corporateName: string;
@@ -11,7 +9,9 @@ export interface ListOutputChurchDTO {
   complement: string;
   district: string;
   codepostal: string;
-  cityId: CityEntity;
+  cityId: number;
+  cityName: string;
+  uf: string;
   phone: string;
   cell: string;
   email: string;
