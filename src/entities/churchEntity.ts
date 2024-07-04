@@ -83,7 +83,7 @@ export class ChurchEntity extends BasisEntity {
     type: "bigint",
     default: null,
   })
-  cityId?: CityEntity;
+  city?: CityEntity;
 
   @Column({
     name: "phone",

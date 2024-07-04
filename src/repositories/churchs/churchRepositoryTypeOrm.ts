@@ -12,11 +12,14 @@ export class ChurchRepositoryTypeOrm implements IChurchRepository {
   async getById(id: number): Promise<ChurchEntity> {
     return await this.churchRepository.findOne({
       where: { id: id },
+      relations: ["city", "city.uf"],
     });
   }
 
   async getAll(): Promise<ChurchEntity[]> {
-    return await this.churchRepository.find({});
+    return await this.churchRepository.find({
+      relations: ["city", "city.uf"],
+    });
   }
 
   async update(
