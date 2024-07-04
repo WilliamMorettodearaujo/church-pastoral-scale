@@ -3,6 +3,7 @@ import { churchRoutes } from "./churchsRouter";
 import { cityRoutes } from "./citiesRouter";
 import { federalUnitRoutes } from "./federalUnitRouter";
 import { exceptionMiddleware } from "./middlewares/exceptionMiddleware";
+import { pastoralRoutes } from "./pastoralRouter";
 
 export const router = Router();
 
@@ -19,5 +20,6 @@ router.get("/", (req, res) => {
 router.use("/church", churchRoutes);
 router.use("/city", cityRoutes);
 router.use("/federal-unit", federalUnitRoutes);
+router.use("/pastoral", pastoralRoutes);
 
 router.use(exceptionMiddleware);
