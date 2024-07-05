@@ -1,9 +1,9 @@
 import { ExceptionHandler } from "../../exceptions/ExceptionHandler";
-import { MassRepositoryTypeOrm } from "../../repositories/masses/massRepositoryTypeOrm";
+import { IMassRepository } from "../../repositories/masses/ImassRepository";
 import { ListMassOutputDTO } from "./dtos/listMassOutputDTO";
 
 export class GetOneMassService {
-  constructor(readonly massRepository = new MassRepositoryTypeOrm()) {}
+  constructor(readonly massRepository: IMassRepository) {}
 
   public async execute(id: number): Promise<ListMassOutputDTO> {
     const mass = await this.massRepository.getById(id);
