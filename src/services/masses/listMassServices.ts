@@ -13,7 +13,7 @@ export class ListMassServices {
         id: mass.id,
         code: mass.code,
         name: mass.name,
-        starDateTime: mass.starDateTime,
+        startDateTime: mass.startDateTime,
         observation: mass.observation,
         churchId: mass.church.id,
         churchName: mass.church.corporateName,

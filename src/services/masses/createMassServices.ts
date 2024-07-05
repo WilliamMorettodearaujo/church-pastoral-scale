@@ -32,7 +32,8 @@ export class CreateMassServices {
 
       delete church.city;
 
-      console.log(payload);
+      console.log(JSON.stringify(payload.startDateTime));
+
       const mass = await this.massRepository.create(payload, church);
 
       return {

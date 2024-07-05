@@ -3,6 +3,6 @@ export interface CreateMassInputDTO {
   code?: number;
   observation: string;
   enabled: boolean;
-  starDateTime: string;
+  startDateTime: Date;
   churchId: number;
 }

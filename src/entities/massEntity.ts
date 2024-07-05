@@ -30,7 +30,7 @@ export class MassEntity extends BasisEntity {
     type: "timestamp",
     nullable: false,
   })
-  starDateTime: string;
+  startDateTime: Date;
 
   @ManyToOne(() => ChurchEntity)
   @JoinColumn({ name: "church_id", referencedColumnName: "id" })

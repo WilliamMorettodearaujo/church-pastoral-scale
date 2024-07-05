@@ -3,7 +3,7 @@ export interface ListMassOutputDTO {
   code: number;
   name: string;
   observation: string;
-  starDateTime: string;
+  startDateTime: Date;
   churchId: number;
   churchName: string;
   enabled: boolean;
