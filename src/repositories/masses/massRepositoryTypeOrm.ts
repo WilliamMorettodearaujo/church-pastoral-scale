@@ -35,6 +35,7 @@ export class MassRepositoryTypeOrm implements IMassRepository {
   async update(id: number, mass: Partial<MassEntity>): Promise<MassEntity> {
     const entity = await this.massRepository.findOne({
       where: { id: id },
+      relations: ["church"],
     });
     this.massRepository.merge(entity, mass);
     return await this.massRepository.save(entity);

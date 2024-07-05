@@ -37,6 +37,7 @@ export class PastoralRepositoryTypeOrm implements IPastoralRepository {
   ): Promise<PastoralEntity> {
     const entity = await this.pastoralRepository.findOne({
       where: { id: id },
+      relations: ["church"],
     });
     this.pastoralRepository.merge(entity, pastoral);
     return await this.pastoralRepository.save(entity);
