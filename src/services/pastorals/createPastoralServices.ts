@@ -1,21 +1,17 @@
 import { ExceptionHandler } from "../../exceptions/ExceptionHandler";
-import { ChurchRepositoryTypeOrm } from "../../repositories/churchs/churchRepositoryTypeOrm";
-import { CommonRepositoryTypeOrm } from "../../repositories/common/commonRepositoryTypeOrm";
-import { PastoralRepositoryTypeOrm } from "../../repositories/pastorals/pastoralRepositoryTypeOrm";
+import { IChurchRepository } from "../../repositories/churchs/IchurchRepository";
+import { ICommonRepository } from "../../repositories/common/IcommonRepository";
+import { IPastoralRepository } from "../../repositories/pastorals/IpastoralRepository";
 import { PastoralValidador } from "../../validator/pastoralValidador";
 import { CreatePastoralInputDTO } from "./dtos/createPastoralInputDTO";
 import { createPastoralOutputDTO } from "./dtos/createPastoralOutputDTO";
 
 export class CreatePastoralServices {
-  private repository: CommonRepositoryTypeOrm;
-  private pastoralRepository: PastoralRepositoryTypeOrm;
-  private churchRepository: ChurchRepositoryTypeOrm;
-
-  constructor() {
-    this.repository = new CommonRepositoryTypeOrm();
-    this.pastoralRepository = new PastoralRepositoryTypeOrm();
-    this.churchRepository = new ChurchRepositoryTypeOrm();
-  }
+  constructor(
+    readonly commonRepository: ICommonRepository,
+    readonly pastoralRepository: IPastoralRepository,
+    readonly churchRepository: IChurchRepository
+  ) {}
 
   public async execute(
     payload: CreatePastoralInputDTO
@@ -43,7 +39,7 @@ export class CreatePastoralServices {
     }
 
     try {
-      payload.code = await this.repository.lastCodeByChurch(
+      payload.code = await this.commonRepository.lastCodeByChurch(
         "pastorals",
         payload.churchId
       );
