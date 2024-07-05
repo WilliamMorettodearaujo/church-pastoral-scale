@@ -17,7 +17,7 @@ export class UpdateChurchServices {
     const churchAlreadyExists = await this.churchRepository.getById(id);
 
     if (!churchAlreadyExists) {
-      throw new ExceptionHandler("Error", `Church ${id} Not Found`, 409);
+      throw new ExceptionHandler("Error", `Church ${id} Not Found`, 404);
     }
 
     const churchDocumentFederal =

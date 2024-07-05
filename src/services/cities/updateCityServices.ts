@@ -19,7 +19,7 @@ export class UpdateCityServices {
       throw new ExceptionHandler(
         "Error",
         `City ${payload.name} Not Found`,
-        409
+        404
       );
     }
 

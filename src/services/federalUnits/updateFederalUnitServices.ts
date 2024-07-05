@@ -20,7 +20,7 @@ export class UpdateFederalUnitServices {
       throw new ExceptionHandler(
         "Error",
         `Federal Document ${uf} Not Found`,
-        409
+        404
       );
     }
 

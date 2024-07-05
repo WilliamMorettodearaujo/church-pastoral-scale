@@ -18,7 +18,7 @@ export class UpdateMassServices {
     const massAlreadyExists = await this.massRepository.getById(id);
 
     if (!massAlreadyExists) {
-      throw new ExceptionHandler("Error", `Mass ${id} Not Found`, 409);
+      throw new ExceptionHandler("Error", `Mass ${id} Not Found`, 404);
     }
 
     try {

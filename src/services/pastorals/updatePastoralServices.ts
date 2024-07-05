@@ -17,7 +17,7 @@ export class UpdatePastoralServices {
     const pastoralAlreadyExists = await this.pastoralRepository.getById(id);
 
     if (!pastoralAlreadyExists) {
-      throw new ExceptionHandler("Error", `Pastoral ${id} Not Found`, 409);
+      throw new ExceptionHandler("Error", `Pastoral ${id} Not Found`, 404);
     }
 
     const pastoralAndChurch = await this.pastoralRepository.findByNameAndChurch(
