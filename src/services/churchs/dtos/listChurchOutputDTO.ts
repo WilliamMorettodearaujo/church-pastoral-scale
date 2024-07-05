@@ -1,4 +1,4 @@
-export interface ListOutputChurchDTO {
+export interface ListChurchOutputDTO {
   id: number;
   corporateName: string;
   tradingName: string;

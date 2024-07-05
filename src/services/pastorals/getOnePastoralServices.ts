@@ -1,11 +1,11 @@
 import { ExceptionHandler } from "../../exceptions/ExceptionHandler";
 import { IPastoralRepository } from "../../repositories/pastorals/IpastoralRepository";
-import { ListOutputPastoralDTO } from "./dtos/listOutputPastoralDTO";
+import { ListPastoralOutputDTO } from "./dtos/listPastoralOutputDTO";
 
 export class GetOnePastoralService {
   constructor(readonly pastoralRepository: IPastoralRepository) {}
 
-  public async execute(id: number): Promise<ListOutputPastoralDTO> {
+  public async execute(id: number): Promise<ListPastoralOutputDTO> {
     const pastoral = await this.pastoralRepository.getById(id);
     if (!pastoral) {
       throw new ExceptionHandler("Error", "Pastoral Not Found", 404);

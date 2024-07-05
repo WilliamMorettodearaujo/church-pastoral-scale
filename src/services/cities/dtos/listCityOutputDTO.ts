@@ -1,4 +1,4 @@
-export interface ListOutputCityDTO {
+export interface ListCityOutputDTO {
   id: number;
   uuid: string;
   name: string;

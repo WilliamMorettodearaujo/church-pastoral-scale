@@ -2,7 +2,7 @@ import { ExceptionHandler } from "../../exceptions/ExceptionHandler";
 import { ICityRepository } from "../../repositories/cities/IcitiesRepository";
 import { CityValidador } from "../../validator/cityValidador";
 import { CreateCityInputDTO } from "./dtos/createCityInputDTO";
-import { ListOutputCityDTO } from "./dtos/listOutputCityDTO";
+import { ListCityOutputDTO } from "./dtos/listCityOutputDTO";
 
 export class UpdateCityServices {
   constructor(readonly cityRepository: ICityRepository) {}
@@ -10,7 +10,7 @@ export class UpdateCityServices {
   public async execute(
     id: number,
     payload: CreateCityInputDTO
-  ): Promise<ListOutputCityDTO> {
+  ): Promise<ListCityOutputDTO> {
     CityValidador.handle([payload]);
 
     const cityAlreadyExists = await this.cityRepository.getById(id);

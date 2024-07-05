@@ -1,12 +1,11 @@
 import { ExceptionHandler } from "../../exceptions/ExceptionHandler";
 import { IChurchRepository } from "../../repositories/churchs/IchurchRepository";
-
-import { ListOutputChurchDTO } from "./dtos/listOutputChurchDTO";
+import { ListChurchOutputDTO } from "./dtos/listChurchOutputDTO";
 
 export class ListChurchServices {
   constructor(readonly churchRepository: IChurchRepository) {}
 
-  public async execute(): Promise<ListOutputChurchDTO[]> {
+  public async execute(): Promise<ListChurchOutputDTO[]> {
     try {
       const churchs = await this.churchRepository.getAll();
 

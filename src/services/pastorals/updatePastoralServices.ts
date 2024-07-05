@@ -3,7 +3,7 @@ import { IPastoralRepository } from "../../repositories/pastorals/IpastoralRepos
 import { PastoralValidador } from "../../validator/pastoralValidador";
 
 import { CreatePastoralInputDTO } from "./dtos/createPastoralInputDTO";
-import { ListOutputPastoralDTO } from "./dtos/listOutputPastoralDTO";
+import { ListPastoralOutputDTO } from "./dtos/listPastoralOutputDTO";
 
 export class UpdatePastoralServices {
   constructor(readonly pastoralRepository: IPastoralRepository) {}
@@ -11,7 +11,7 @@ export class UpdatePastoralServices {
   public async execute(
     id: number,
     payload: CreatePastoralInputDTO
-  ): Promise<ListOutputPastoralDTO> {
+  ): Promise<ListPastoralOutputDTO> {
     PastoralValidador.handle([payload]);
 
     const pastoralAlreadyExists = await this.pastoralRepository.getById(id);
