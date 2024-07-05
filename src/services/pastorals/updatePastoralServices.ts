@@ -1,6 +1,6 @@
 import { ExceptionHandler } from "../../exceptions/ExceptionHandler";
 import { IPastoralRepository } from "../../repositories/pastorals/IpastoralRepository";
-import { PastoralValidador } from "../../validator/pastoralsValidador";
+import { PastoralValidador } from "../../validator/pastoralValidador";
 
 import { CreatePastoralInputDTO } from "./dtos/createPastoralInputDTO";
 import { ListOutputPastoralDTO } from "./dtos/listOutputPastoralDTO";

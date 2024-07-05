@@ -2,7 +2,7 @@ import { ExceptionHandler } from "../../exceptions/ExceptionHandler";
 import { ChurchRepositoryTypeOrm } from "../../repositories/churchs/churchRepositoryTypeOrm";
 import { CommonRepositoryTypeOrm } from "../../repositories/common/commonRepositoryTypeOrm";
 import { PastoralRepositoryTypeOrm } from "../../repositories/pastorals/pastoralRepositoryTypeOrm";
-import { PastoralValidador } from "../../validator/pastoralsValidador";
+import { PastoralValidador } from "../../validator/pastoralValidador";
 import { CreatePastoralInputDTO } from "./dtos/createPastoralInputDTO";
 import { createPastoralOutputDTO } from "./dtos/createPastoralOutputDTO";
 
@@ -48,6 +48,7 @@ export class CreatePastoralServices {
         payload.churchId
       );
 
+      delete church.city;
       const pastoral = await this.pastoralRepository.create(payload, church);
 
       return {
