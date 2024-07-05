@@ -1,4 +1,4 @@
-export interface ListOutputPastoralDTO {
+export interface ListPastoralOutputDTO {
   id: number;
   code: number;
   name: string;

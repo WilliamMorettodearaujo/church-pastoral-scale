@@ -3,7 +3,7 @@ import { IChurchRepository } from "../../repositories/churchs/IchurchRepository"
 
 import { ChurchValidador } from "../../validator/churchValidador";
 import { CreateChurchInputDTO } from "./dtos/createChurchInputDTO";
-import { ListOutputChurchDTO } from "./dtos/listOutputChurchDTO";
+import { ListChurchOutputDTO } from "./dtos/listChurchOutputDTO";
 
 export class UpdateChurchServices {
   constructor(readonly churchRepository: IChurchRepository) {}
@@ -11,7 +11,7 @@ export class UpdateChurchServices {
   public async execute(
     id: number,
     payload: CreateChurchInputDTO
-  ): Promise<ListOutputChurchDTO> {
+  ): Promise<ListChurchOutputDTO> {
     ChurchValidador.handle([payload]);
 
     const churchAlreadyExists = await this.churchRepository.getById(id);

@@ -1,11 +1,11 @@
 import { ExceptionHandler } from "../../exceptions/ExceptionHandler";
 import { ICityRepository } from "../../repositories/cities/IcitiesRepository";
-import { ListOutputCityDTO } from "./dtos/listOutputCityDTO";
+import { ListCityOutputDTO } from "./dtos/listCityOutputDTO";
 
 export class GetOneCityService {
   constructor(readonly cityRepository: ICityRepository) {}
 
-  public async execute(id: number): Promise<ListOutputCityDTO> {
+  public async execute(id: number): Promise<ListCityOutputDTO> {
     const city = await this.cityRepository.getById(id);
 
     if (!city) {

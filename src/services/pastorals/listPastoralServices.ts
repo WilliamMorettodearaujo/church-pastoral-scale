@@ -1,12 +1,11 @@
 import { ExceptionHandler } from "../../exceptions/ExceptionHandler";
 import { IPastoralRepository } from "../../repositories/pastorals/IpastoralRepository";
-
-import { ListOutputPastoralDTO } from "./dtos/listOutputPastoralDTO";
+import { ListPastoralOutputDTO } from "./dtos/listPastoralOutputDTO";
 
 export class ListPastoralServices {
   constructor(readonly pastoralRepository: IPastoralRepository) {}
 
-  public async execute(): Promise<ListOutputPastoralDTO[]> {
+  public async execute(): Promise<ListPastoralOutputDTO[]> {
     try {
       const pastorals = await this.pastoralRepository.getAll();
       return pastorals.map((pastoral) => ({

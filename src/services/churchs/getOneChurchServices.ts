@@ -1,11 +1,11 @@
 import { ExceptionHandler } from "../../exceptions/ExceptionHandler";
 import { IChurchRepository } from "../../repositories/churchs/IchurchRepository";
-import { ListOutputChurchDTO } from "./dtos/listOutputChurchDTO";
+import { ListChurchOutputDTO } from "./dtos/listChurchOutputDTO";
 
 export class GetOneChurchService {
   constructor(readonly churchRepository: IChurchRepository) {}
 
-  public async execute(id: number): Promise<ListOutputChurchDTO> {
+  public async execute(id: number): Promise<ListChurchOutputDTO> {
     const church = await this.churchRepository.getById(id);
     if (!church) {
       throw new ExceptionHandler("Error", "Church Not Found", 404);

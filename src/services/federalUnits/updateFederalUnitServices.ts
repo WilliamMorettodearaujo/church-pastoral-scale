@@ -2,7 +2,7 @@ import { ExceptionHandler } from "../../exceptions/ExceptionHandler";
 import { IFederalUnitRepository } from "../../repositories/federalUnits/IfederalUnitRepository";
 import { FederalUnitValidador } from "../../validator/federalUnitValidador";
 import { CreateFederalUnitInputDTO } from "./dtos/createFederalUnitInputDTO";
-import { ListOutputFederalUnitDTO } from "./dtos/listOutputFederalUnitDTO";
+import { ListFederalUnitOutputDTO } from "./dtos/listFederalUnitOutputDTO";
 
 export class UpdateFederalUnitServices {
   constructor(readonly federalUnitRepository: IFederalUnitRepository) {}
@@ -10,7 +10,7 @@ export class UpdateFederalUnitServices {
   public async execute(
     uf: string,
     payload: CreateFederalUnitInputDTO
-  ): Promise<ListOutputFederalUnitDTO> {
+  ): Promise<ListFederalUnitOutputDTO> {
     FederalUnitValidador.handle([payload]);
 
     const federalUnitAlreadyExists =
