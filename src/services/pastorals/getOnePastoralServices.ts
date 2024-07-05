@@ -1,9 +1,9 @@
 import { ExceptionHandler } from "../../exceptions/ExceptionHandler";
-import { PastoralRepositoryTypeOrm } from "../../repositories/pastorals/pastoralRepositoryTypeOrm";
+import { IPastoralRepository } from "../../repositories/pastorals/IpastoralRepository";
 import { ListOutputPastoralDTO } from "./dtos/listOutputPastoralDTO";
 
 export class GetOnePastoralService {
-  constructor(readonly pastoralRepository = new PastoralRepositoryTypeOrm()) {}
+  constructor(readonly pastoralRepository: IPastoralRepository) {}
 
   public async execute(id: number): Promise<ListOutputPastoralDTO> {
     const pastoral = await this.pastoralRepository.getById(id);
