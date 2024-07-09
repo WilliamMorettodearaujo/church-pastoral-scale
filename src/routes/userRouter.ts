@@ -25,10 +25,11 @@ userRoutes.get(
 );
 
 userRoutes.get(
-  "/",
+  "/church/:churchId",
   use((req: Request, res: Response) => {
+    const churchId = parseInt(req.params.churchId);
     const controller = new ListUserController();
-    return controller.handle(res);
+    return controller.handle(churchId, res);
   })
 );
 

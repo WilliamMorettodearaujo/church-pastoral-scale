@@ -7,7 +7,7 @@ export interface IMassRepository {
     church: Partial<ChurchEntity>
   ): Promise<MassEntity>;
   getById(id: number): Promise<MassEntity | null>;
-  getAll(): Promise<MassEntity[]>;
+  getAll(churchId: number): Promise<MassEntity[]>;
   update(id: number, mass: Partial<MassEntity>): Promise<MassEntity>;
   delete(id: string): Promise<void>;
 }

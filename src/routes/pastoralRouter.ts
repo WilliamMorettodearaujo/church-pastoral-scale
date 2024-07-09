@@ -25,10 +25,11 @@ pastoralRoutes.get(
 );
 
 pastoralRoutes.get(
-  "/",
+  "/church/:churchId",
   use((req: Request, res: Response) => {
+    const churchId = parseInt(req.params.churchId);
     const controller = new ListPastoralController();
-    return controller.handle(res);
+    return controller.handle(churchId, res);
   })
 );
 

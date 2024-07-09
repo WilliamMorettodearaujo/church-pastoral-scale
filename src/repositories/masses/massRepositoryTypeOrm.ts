@@ -26,8 +26,9 @@ export class MassRepositoryTypeOrm implements IMassRepository {
     });
   }
 
-  async getAll(): Promise<MassEntity[]> {
+  async getAll(churchId: number): Promise<MassEntity[]> {
     return await this.massRepository.find({
+      where: { church: { id: churchId } },
       relations: ["church"],
     });
   }

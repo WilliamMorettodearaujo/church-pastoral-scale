@@ -7,7 +7,7 @@ export interface IUserRepository {
     church: Partial<ChurchEntity>
   ): Promise<UserEntity>;
   getById(id: number): Promise<UserEntity | null>;
-  getAll(): Promise<UserEntity[]>;
+  getAll(churchId: number): Promise<UserEntity[]>;
   update(id: number, user: Partial<UserEntity>): Promise<UserEntity>;
   delete(id: string): Promise<void>;
   findByEmail(email: string, churchId: number): Promise<UserEntity | null>;
