@@ -47,7 +47,7 @@ export class UserRepositoryTypeOrm implements IUserRepository {
 
   async findByEmail(
     email: string,
-    churchId: number
+    churchId?: number
   ): Promise<UserEntity | null> {
     return await this.userRepository.findOne({
       where: {

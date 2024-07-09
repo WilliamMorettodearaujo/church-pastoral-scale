@@ -28,7 +28,7 @@ export class UserEntity extends BasisEntity {
   @Column({
     name: "password",
     type: "varchar",
-    length: 100,
+    length: 255,
     default: null,
   })
   password: string;
@@ -36,7 +36,7 @@ export class UserEntity extends BasisEntity {
   @Column({
     name: "password_reset_token",
     type: "varchar",
-    length: 100,
+    length: 255,
     default: null,
   })
   passwordResetToken: string;
