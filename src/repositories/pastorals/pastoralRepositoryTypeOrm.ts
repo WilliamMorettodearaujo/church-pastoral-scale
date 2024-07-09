@@ -25,8 +25,9 @@ export class PastoralRepositoryTypeOrm implements IPastoralRepository {
     });
   }
 
-  async getAll(): Promise<PastoralEntity[]> {
+  async getAll(churchId: number): Promise<PastoralEntity[]> {
     return await this.pastoralRepository.find({
+      where: { church: { id: churchId } },
       relations: ["church"],
     });
   }

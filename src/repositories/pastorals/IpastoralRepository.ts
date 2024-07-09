@@ -7,7 +7,7 @@ export interface IPastoralRepository {
     church: Partial<ChurchEntity>
   ): Promise<PastoralEntity>;
   getById(id: number): Promise<PastoralEntity | null>;
-  getAll(): Promise<PastoralEntity[]>;
+  getAll(churchId: number): Promise<PastoralEntity[]>;
   update(
     id: number,
     pastoral: Partial<PastoralEntity>

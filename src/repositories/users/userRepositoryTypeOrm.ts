@@ -25,8 +25,9 @@ export class UserRepositoryTypeOrm implements IUserRepository {
     });
   }
 
-  async getAll(): Promise<UserEntity[]> {
+  async getAll(churchId: number): Promise<UserEntity[]> {
     return await this.userRepository.find({
+      where: { church: { id: churchId } },
       relations: ["church"],
     });
   }
