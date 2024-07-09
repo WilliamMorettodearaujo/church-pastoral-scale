@@ -14,7 +14,7 @@ export class ListPastoralServices {
         name: pastoral.name,
         observation: pastoral.observation,
         churchId: pastoral.church.id,
-        churchName: pastoral.church.corporateName,
+        churchCorporateName: pastoral.church.corporateName,
         enabled: pastoral.enabled,
       }));
     } catch (error) {

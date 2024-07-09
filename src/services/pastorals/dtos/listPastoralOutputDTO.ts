@@ -4,6 +4,6 @@ export interface ListPastoralOutputDTO {
   name: string;
   observation: string;
   churchId: number;
-  churchName: string;
+  churchCorporateName: string;
   enabled: boolean;
 }
