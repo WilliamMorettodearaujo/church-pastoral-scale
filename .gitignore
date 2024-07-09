@@ -138,3 +138,6 @@ $RECYCLE.BIN/
 .env
 
 # End of https://www.gitignore.io/api/node
+
+# Ignorar o arquivo mail.json
+/src/config/mail.json

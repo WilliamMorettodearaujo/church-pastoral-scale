@@ -1,4 +1,5 @@
 import { Router } from "express";
+import { authenticationRouters } from "./authenticationRouter";
 import { churchRoutes } from "./churchsRouter";
 import { cityRoutes } from "./citiesRouter";
 import { federalUnitRoutes } from "./federalUnitRouter";
@@ -25,5 +26,6 @@ router.use("/federal-unit", federalUnitRoutes);
 router.use("/pastoral", pastoralRoutes);
 router.use("/mass", massRoutes);
 router.use("/user", userRoutes);
+router.use("/authentication", authenticationRouters);
 
 router.use(exceptionMiddleware);
