@@ -16,7 +16,7 @@ export class ListMassServices {
         startDateTime: mass.startDateTime,
         observation: mass.observation,
         churchId: mass.church.id,
-        churchName: mass.church.corporateName,
+        churchCorporateName: mass.church.corporateName,
         enabled: mass.enabled,
       }));
     } catch (error) {
