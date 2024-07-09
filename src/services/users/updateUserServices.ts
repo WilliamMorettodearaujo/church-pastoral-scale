@@ -35,7 +35,7 @@ export class UpdateUserServices {
 
     try {
       const passwordProvider = new EncriptPasswordProvider();
-      payload.password = passwordProvider.handle(payload.password.toString());
+      payload.password = passwordProvider.execute(payload.password.toString());
 
       const user = await this.userRepository.update(id, payload);
       return {
