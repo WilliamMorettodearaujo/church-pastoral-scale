@@ -49,6 +49,7 @@ export class CreatePastoralServices {
 
       return {
         id: pastoral.id,
+        code: pastoral.code,
       };
     } catch (error) {
       throw new ExceptionHandler("Error", error.message, 500);

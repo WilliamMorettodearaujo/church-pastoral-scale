@@ -36,6 +36,7 @@ export class CreateMassServices {
 
       return {
         id: mass.id,
+        code: mass.code,
       };
     } catch (error) {
       throw new ExceptionHandler("Error", error.message, 500);
