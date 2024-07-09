@@ -28,7 +28,7 @@ export class UpdatePastoralServices {
     if (pastoralAndChurch && pastoralAndChurch.id != id) {
       throw new ExceptionHandler(
         "Error",
-        `Pastoral with federal document ${payload.name} already exists`,
+        `Pastoral ${payload.name} already exists to for ${payload.churchId}`,
         409
       );
     }
