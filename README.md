@@ -17,6 +17,7 @@ Tecnologias Utilizadas:
 - Linguagem de Programação: TypeScript
 - Framework Backend: Node.js com Express
 - Banco de Dados: PostgreSQL
+- ORM: TypeOrm
 - Autenticação e Autorização: JWT (JSON Web Tokens)
 - Documentação da API: Swagger
 - Teste: Jest para testes unitários
