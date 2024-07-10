@@ -3,6 +3,7 @@ import { ForgotPasswordController } from "../controllers/authentication/forgotPa
 import { LoginController } from "../controllers/authentication/loginController";
 import { RefreshTokenController } from "../controllers/authentication/refreshTokenController";
 import { ResetPasswordController } from "../controllers/authentication/resetPasswordController";
+import { authenticationMiddleware } from "../middleware/authenticationMiddleware";
 import { use } from "./middlewares/exeptions";
 
 export const authenticationRouters = Router();
@@ -31,12 +32,7 @@ authenticationRouters.post(
   })
 );
 
-//authenticationRouters.use(authMiddleware);
-
-// authRouters.post("/logout", (req: Request, res: Response) => {
-//   const controller = logoutController()
-//   controller.handle(req, res)
-// });
+authenticationRouters.use(authenticationMiddleware);
 
 authenticationRouters.post(
   "/refresh-token",
