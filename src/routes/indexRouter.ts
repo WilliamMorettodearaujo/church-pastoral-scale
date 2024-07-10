@@ -1,4 +1,5 @@
 import { Router } from "express";
+import { authenticationMiddleware } from "../middleware/authenticationMiddleware";
 import { authenticationRouters } from "./authenticationRouter";
 import { churchRoutes } from "./churchsRouter";
 import { cityRoutes } from "./citiesRouter";
@@ -20,12 +21,12 @@ router.get("/", (req, res) => {
   });
 });
 
-router.use("/church", churchRoutes);
-router.use("/city", cityRoutes);
-router.use("/federal-unit", federalUnitRoutes);
-router.use("/pastoral", pastoralRoutes);
-router.use("/mass", massRoutes);
-router.use("/user", userRoutes);
+router.use("/church", authenticationMiddleware, churchRoutes);
+router.use("/city", authenticationMiddleware, cityRoutes);
+router.use("/federal-unit", authenticationMiddleware, federalUnitRoutes);
+router.use("/pastoral", authenticationMiddleware, pastoralRoutes);
+router.use("/mass", authenticationMiddleware, massRoutes);
+router.use("/user", authenticationMiddleware, userRoutes);
 router.use("/authentication", authenticationRouters);
 
 router.use(exceptionMiddleware);
