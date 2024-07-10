@@ -3,7 +3,16 @@ export interface ListPastoralOutputDTO {
   code: number;
   name: string;
   observation: string;
-  churchId: number;
-  churchCorporateName: string;
+  church: {
+    id: number;
+    corporateName: string;
+  };
   enabled: boolean;
+  users: {
+    id: number;
+    code: number;
+    name: string;
+    email: string;
+    enabled: boolean;
+  }[];
 }

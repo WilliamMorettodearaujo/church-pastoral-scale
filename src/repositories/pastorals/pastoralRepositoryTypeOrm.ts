@@ -1,19 +1,26 @@
 import { AppDataSource } from "../../data-source";
 import { ChurchEntity } from "../../entities/churchEntity";
 import { PastoralEntity } from "../../entities/pastoralEntity";
+import { UserEntity } from "../../entities/userEntity";
 import { IPastoralRepository } from "./IpastoralRepository";
 
 export class PastoralRepositoryTypeOrm implements IPastoralRepository {
   pastoralRepository = AppDataSource.getRepository(PastoralEntity);
   churchRepository = AppDataSource.getRepository(ChurchEntity);
+  userRepository = AppDataSource.getRepository(UserEntity);
 
   async create(
     pastoral: Partial<PastoralEntity>,
-    church: Partial<ChurchEntity>
+    church: Partial<ChurchEntity>,
+    users: Partial<UserEntity[]>
   ): Promise<PastoralEntity> {
+    const newUsers = await this.userRepository.findByIds(
+      users.map((user) => user.id)
+    );
     const newPastoral = this.pastoralRepository.create({
       ...pastoral,
       church: church,
+      users: newUsers,
     });
     return await this.pastoralRepository.save(newPastoral);
   }
@@ -21,7 +28,7 @@ export class PastoralRepositoryTypeOrm implements IPastoralRepository {
   async getById(id: number): Promise<PastoralEntity> {
     return await this.pastoralRepository.findOne({
       where: { id: id },
-      relations: ["church"],
+      relations: ["church", "users"],
     });
   }
 

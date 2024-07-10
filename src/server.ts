@@ -4,7 +4,7 @@ import logger from "morgan";
 import { AppDataSource } from "./data-source";
 import { router } from "./routes/indexRouter";
 
-const portDB = process.env.DB_PORT_DB ? parseInt(process.env.DB_PORT_DB) : 3336;
+const apiPort = process.env.API_PORT ? parseInt(process.env.API_PORT) : 3336;
 export const app = express();
 
 app.use(cors());
@@ -14,6 +14,6 @@ app.use(router);
 
 AppDataSource.initialize()
   .then(() =>
-    app.listen(portDB, () => console.log(`Api running on port ${portDB}`))
+    app.listen(apiPort, () => console.log(`Api running on port ${apiPort}`))
   )
   .catch((error) => console.log(error));

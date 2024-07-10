@@ -4,7 +4,9 @@ export interface ListMassOutputDTO {
   name: string;
   observation: string;
   startDateTime: Date;
-  churchId: number;
-  churchCorporateName: string;
+  church: {
+    id: number;
+    corporateName: string;
+  };
   enabled: boolean;
 }

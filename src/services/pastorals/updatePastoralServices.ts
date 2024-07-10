@@ -40,9 +40,12 @@ export class UpdatePastoralServices {
         code: pastoral.code,
         name: pastoral.name,
         observation: pastoral.observation,
-        churchId: pastoral.church.id,
-        churchCorporateName: pastoral.church.corporateName,
+        church: {
+          id: pastoral.church.id,
+          corporateName: pastoral.church.corporateName,
+        },
         enabled: pastoral.enabled,
+        users: [],
       };
     } catch (error) {
       throw new ExceptionHandler("Error", error.message, 500);

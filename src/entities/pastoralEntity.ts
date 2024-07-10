@@ -1,6 +1,14 @@
-import { Column, Entity, JoinColumn, ManyToOne } from "typeorm";
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  JoinTable,
+  ManyToMany,
+  ManyToOne,
+} from "typeorm";
 import { BasisEntity } from "./basisEntity";
 import { ChurchEntity } from "./churchEntity";
+import { UserEntity } from "./userEntity";
 
 @Entity("pastorals")
 export class PastoralEntity extends BasisEntity {
@@ -28,6 +36,10 @@ export class PastoralEntity extends BasisEntity {
   @ManyToOne(() => ChurchEntity)
   @JoinColumn({ name: "church_id", referencedColumnName: "id" })
   church: ChurchEntity;
+
+  @ManyToMany(() => UserEntity, { cascade: true })
+  @JoinTable({ name: "pastorals_users" })
+  users: UserEntity[];
 
   @Column({
     name: "enabled",

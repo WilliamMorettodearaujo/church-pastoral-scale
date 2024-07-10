@@ -2,6 +2,7 @@ import { ExceptionHandler } from "../../exceptions/ExceptionHandler";
 import { IChurchRepository } from "../../repositories/churchs/IchurchRepository";
 import { ICommonRepository } from "../../repositories/common/IcommonRepository";
 import { IPastoralRepository } from "../../repositories/pastorals/IpastoralRepository";
+import { IUserRepository } from "../../repositories/users/IuserRepository";
 import { PastoralValidador } from "../../validator/pastoralValidador";
 import { CreatePastoralInputDTO } from "./dtos/createPastoralInputDTO";
 import { createPastoralOutputDTO } from "./dtos/createPastoralOutputDTO";
@@ -10,7 +11,8 @@ export class CreatePastoralServices {
   constructor(
     readonly commonRepository: ICommonRepository,
     readonly pastoralRepository: IPastoralRepository,
-    readonly churchRepository: IChurchRepository
+    readonly churchRepository: IChurchRepository,
+    readonly userRepository: IUserRepository
   ) {}
 
   public async execute(
@@ -34,6 +36,8 @@ export class CreatePastoralServices {
 
     const church = await this.churchRepository.getById(payload.churchId);
 
+    const userIds = await this.userRepository.findByIds(payload.userIds);
+
     if (!church) {
       throw new ExceptionHandler("Error", "Church not found", 404);
     }
@@ -45,7 +49,11 @@ export class CreatePastoralServices {
       );
 
       delete church.city;
-      const pastoral = await this.pastoralRepository.create(payload, church);
+      const pastoral = await this.pastoralRepository.create(
+        payload,
+        church,
+        userIds
+      );
 
       return {
         id: pastoral.id,

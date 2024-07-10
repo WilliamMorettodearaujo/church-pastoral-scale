@@ -43,8 +43,10 @@ export class UpdateUserServices {
         code: user.code,
         name: user.name,
         email: user.email,
-        churchId: user.church.id,
-        churchCorporateName: user.church.corporateName,
+        church: {
+          id: user.church.id,
+          corporateName: user.church.corporateName,
+        },
         enabled: user.enabled,
       };
     } catch (error) {

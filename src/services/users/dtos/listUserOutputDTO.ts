@@ -3,7 +3,9 @@ export interface ListUserOutputDTO {
   code: number;
   name: string;
   email: string;
-  churchId: number;
-  churchCorporateName: string;
+  church: {
+    id: number;
+    corporateName: string;
+  };
   enabled: boolean;
 }

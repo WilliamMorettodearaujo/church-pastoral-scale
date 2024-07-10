@@ -1,3 +1,4 @@
+import { In } from "typeorm";
 import { AppDataSource } from "../../data-source";
 import { ChurchEntity } from "../../entities/churchEntity";
 import { UserEntity } from "../../entities/userEntity";
@@ -55,6 +56,14 @@ export class UserRepositoryTypeOrm implements IUserRepository {
         church: { id: churchId },
       },
       relations: ["church"],
+    });
+  }
+
+  async findByIds(ids: number[]): Promise<UserEntity[]> {
+    return await this.userRepository.find({
+      where: {
+        id: In(ids),
+      },
     });
   }
 }

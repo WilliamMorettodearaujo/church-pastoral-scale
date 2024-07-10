@@ -23,9 +23,12 @@ export class ListPastoralServices {
         code: pastoral.code,
         name: pastoral.name,
         observation: pastoral.observation,
-        churchId: pastoral.church.id,
-        churchCorporateName: pastoral.church.corporateName,
+        church: {
+          id: church.id,
+          corporateName: church.corporateName,
+        },
         enabled: pastoral.enabled,
+        users: [],
       }));
     } catch (error) {
       throw new ExceptionHandler("Error", error.message, 500);

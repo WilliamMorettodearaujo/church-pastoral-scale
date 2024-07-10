@@ -4,4 +4,5 @@ export interface CreatePastoralInputDTO {
   observation: string;
   enabled: boolean;
   churchId: number;
+  userIds?: number[];
 }
