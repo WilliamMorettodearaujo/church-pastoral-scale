@@ -29,8 +29,10 @@ export class UpdateMassServices {
         name: mass.name,
         startDateTime: mass.startDateTime,
         observation: mass.observation,
-        churchId: mass.church.id,
-        churchCorporateName: mass.church.corporateName,
+        church: {
+          id: mass.church.id,
+          corporateName: mass.church.corporateName,
+        },
         enabled: mass.enabled,
       };
     } catch (error) {

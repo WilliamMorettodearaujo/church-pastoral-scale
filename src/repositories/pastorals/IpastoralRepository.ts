@@ -1,10 +1,12 @@
 import { ChurchEntity } from "../../entities/churchEntity";
 import { PastoralEntity } from "../../entities/pastoralEntity";
+import { UserEntity } from "../../entities/userEntity";
 
 export interface IPastoralRepository {
   create(
     pastoral: Partial<PastoralEntity>,
-    church: Partial<ChurchEntity>
+    church: Partial<ChurchEntity>,
+    users: Partial<UserEntity[]>
   ): Promise<PastoralEntity>;
   getById(id: number): Promise<PastoralEntity | null>;
   getAll(churchId: number): Promise<PastoralEntity[]>;

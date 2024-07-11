@@ -12,8 +12,9 @@ export class PastoralValidador {
       .keys({
         name: joi.string().required(),
         churchId: joi.number().required(),
-        observation: joi.string(),
-        enabled: joi.boolean(),
+        observation: joi.string().allow("").optional(),
+        userIds: joi.array().items(joi.number()).optional(),
+        enabled: joi.boolean().optional(),
       })
       .required();
 
