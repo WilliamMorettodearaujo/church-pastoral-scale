@@ -36,11 +36,25 @@ export class CreatePastoralServices {
 
     const church = await this.churchRepository.getById(payload.churchId);
 
-    const userIds = await this.userRepository.findByIds(payload.userIds);
-
     if (!church) {
       throw new ExceptionHandler("Error", "Church not found", 404);
     }
+
+    if (payload.userIds) {
+      const userIds = payload.userIds;
+
+      for (const userId of userIds) {
+        if (!(await this.userRepository.getById(userId))) {
+          throw new ExceptionHandler(
+            "Error",
+            `User id ${userId} not found`,
+            404
+          );
+        }
+      }
+    }
+
+    const users = await this.userRepository.findByIds(payload.userIds);
 
     try {
       payload.code = await this.commonRepository.lastCodeByChurch(
@@ -52,7 +66,7 @@ export class CreatePastoralServices {
       const pastoral = await this.pastoralRepository.create(
         payload,
         church,
-        userIds
+        users
       );
 
       return {

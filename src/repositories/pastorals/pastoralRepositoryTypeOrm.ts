@@ -14,13 +14,10 @@ export class PastoralRepositoryTypeOrm implements IPastoralRepository {
     church: Partial<ChurchEntity>,
     users: Partial<UserEntity[]>
   ): Promise<PastoralEntity> {
-    const newUsers = await this.userRepository.findByIds(
-      users.map((user) => user.id)
-    );
     const newPastoral = this.pastoralRepository.create({
       ...pastoral,
       church: church,
-      users: newUsers,
+      users: users,
     });
     return await this.pastoralRepository.save(newPastoral);
   }
@@ -35,7 +32,7 @@ export class PastoralRepositoryTypeOrm implements IPastoralRepository {
   async getAll(churchId: number): Promise<PastoralEntity[]> {
     return await this.pastoralRepository.find({
       where: { church: { id: churchId } },
-      relations: ["church"],
+      relations: ["church", "users"],
     });
   }
 
@@ -45,8 +42,12 @@ export class PastoralRepositoryTypeOrm implements IPastoralRepository {
   ): Promise<PastoralEntity> {
     const entity = await this.pastoralRepository.findOne({
       where: { id: id },
-      relations: ["church"],
+      relations: ["church", "users"],
     });
+    if (entity && pastoral && pastoral.users) {
+      entity.users = pastoral.users;
+    }
+
     this.pastoralRepository.merge(entity, pastoral);
     return await this.pastoralRepository.save(entity);
   }

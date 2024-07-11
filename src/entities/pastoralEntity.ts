@@ -37,7 +37,7 @@ export class PastoralEntity extends BasisEntity {
   @JoinColumn({ name: "church_id", referencedColumnName: "id" })
   church: ChurchEntity;
 
-  @ManyToMany(() => UserEntity, { cascade: true })
+  @ManyToMany(() => UserEntity, { cascade: true, orphanedRowAction: "delete" })
   @JoinTable({ name: "pastorals_users" })
   users: UserEntity[];
 

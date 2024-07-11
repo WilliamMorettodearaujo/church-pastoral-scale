@@ -1,12 +1,16 @@
 import { ExceptionHandler } from "../../exceptions/ExceptionHandler";
 import { IPastoralRepository } from "../../repositories/pastorals/IpastoralRepository";
+import { IUserRepository } from "../../repositories/users/IuserRepository";
 import { PastoralValidador } from "../../validator/pastoralValidador";
 
 import { CreatePastoralInputDTO } from "./dtos/createPastoralInputDTO";
 import { ListPastoralOutputDTO } from "./dtos/listPastoralOutputDTO";
 
 export class UpdatePastoralServices {
-  constructor(readonly pastoralRepository: IPastoralRepository) {}
+  constructor(
+    readonly pastoralRepository: IPastoralRepository,
+    readonly userRepository: IUserRepository
+  ) {}
 
   public async execute(
     id: number,
@@ -33,6 +37,14 @@ export class UpdatePastoralServices {
       );
     }
 
+    const userIds = payload.userIds;
+
+    for (const userId of userIds) {
+      if (!(await this.userRepository.getById(userId))) {
+        throw new ExceptionHandler("Error", `User id ${userId} not found`, 404);
+      }
+    }
+
     try {
       const pastoral = await this.pastoralRepository.update(id, payload);
       return {
@@ -45,7 +57,13 @@ export class UpdatePastoralServices {
           corporateName: pastoral.church.corporateName,
         },
         enabled: pastoral.enabled,
-        users: [],
+        users: pastoral.users.map((user) => ({
+          id: user.id,
+          code: user.code,
+          name: user.name,
+          email: user.email,
+          enabled: user.enabled,
+        })),
       };
     } catch (error) {
       throw new ExceptionHandler("Error", error.message, 500);
