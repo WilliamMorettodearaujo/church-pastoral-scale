@@ -8,6 +8,7 @@ import { massRoutes } from "./massRouter";
 import { exceptionMiddleware } from "./middlewares/exceptionMiddleware";
 import { pastoralRoutes } from "./pastoralRouter";
 import { userRoutes } from "./userRouter";
+import { utilityRouters } from "./utilityRouter";
 
 export const router = Router();
 
@@ -27,6 +28,7 @@ router.use("/federal-unit", authenticationMiddleware, federalUnitRoutes);
 router.use("/pastoral", authenticationMiddleware, pastoralRoutes);
 router.use("/mass", authenticationMiddleware, massRoutes);
 router.use("/user", authenticationMiddleware, userRoutes);
+router.use("/utility", authenticationMiddleware, utilityRouters);
 router.use("/authentication", authenticationRouters);
 
 router.use(exceptionMiddleware);
