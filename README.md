@@ -20,6 +20,7 @@ Tecnologias Utilizadas:
 - ORM: TypeOrm
 - Autenticação e Autorização: JWT (JSON Web Tokens)
 - Documentação da API: Swagger
+- Gerenciamento de notificações: RabbitMQ e MongoDB
 - Teste: Jest para testes unitários
 - Ferramentas de Desenvolvimento: ESLint, Prettier
 
