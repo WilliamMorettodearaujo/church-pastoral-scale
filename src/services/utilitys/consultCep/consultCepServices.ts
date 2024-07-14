@@ -12,7 +12,6 @@ export class ConsultCepServices {
 
     const dataCep = await this.helperCep.execute(cep);
 
-    console.log(dataCep);
     if (dataCep.status === 429) {
       throw new ExceptionHandler(
         "Error",

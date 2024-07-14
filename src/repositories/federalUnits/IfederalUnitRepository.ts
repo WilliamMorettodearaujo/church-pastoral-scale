@@ -1,7 +1,7 @@
 import { FederalUnitEntity } from "../../entities/federalUnitEntity";
 
 export interface IFederalUnitRepository {
-  create(federalUnit: Partial<FederalUnitEntity>): Promise<FederalUnitEntity>;
+  save(federalUnit: Partial<FederalUnitEntity>): Promise<FederalUnitEntity>;
   getById(uf: string): Promise<FederalUnitEntity | null>;
   getAll(): Promise<FederalUnitEntity[]>;
   update(

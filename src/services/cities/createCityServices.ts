@@ -23,7 +23,7 @@ export class CreateCityServices {
     }
 
     try {
-      const city = await this.cityRepository.create(payload);
+      const city = await this.cityRepository.save(payload);
 
       return {
         id: city.id,

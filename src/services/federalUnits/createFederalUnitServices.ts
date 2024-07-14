@@ -25,7 +25,7 @@ export class CreateFederalUnitServices {
     }
 
     try {
-      const federalUnit = await this.federalUnitRepository.create(payload);
+      const federalUnit = await this.federalUnitRepository.save(payload);
 
       return {
         uf: federalUnit.uf,

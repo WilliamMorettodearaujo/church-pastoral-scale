@@ -5,7 +5,7 @@ import { ICityRepository } from "./IcitiesRepository";
 export class CityRepositoryTypeOrm implements ICityRepository {
   cityRepository = AppDataSource.getRepository(CityEntity);
 
-  async create(city: Partial<CityEntity>): Promise<CityEntity> {
+  async save(city: Partial<CityEntity>): Promise<CityEntity> {
     return await this.cityRepository.save(city);
   }
   async getByNameAndUf(city: Partial<CityEntity>): Promise<CityEntity> {

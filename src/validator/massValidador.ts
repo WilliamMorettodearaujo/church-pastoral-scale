@@ -13,9 +13,15 @@ export class MassValidador {
       .keys({
         name: joi.string().required(),
         churchId: joi.number().required(),
-        observation: joi.string(),
-        enabled: joi.boolean(),
+        observation: joi.string().allow("").optional(),
+        enabled: joi.boolean().optional(),
         startDateTime: joi.date().iso().required(),
+        massScales: joi
+          .object({
+            pastoralId: joi.number().required(),
+            userId: joi.array().items(joi.number()).required(),
+          })
+          .optional(),
       })
       .required();
 

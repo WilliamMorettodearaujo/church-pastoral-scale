@@ -5,7 +5,7 @@ import { IChurchRepository } from "./IchurchRepository";
 export class ChurchRepositoryTypeOrm implements IChurchRepository {
   churchRepository = AppDataSource.getRepository(ChurchEntity);
 
-  async create(church: Partial<ChurchEntity>): Promise<ChurchEntity> {
+  async save(church: Partial<ChurchEntity>): Promise<ChurchEntity> {
     return await this.churchRepository.save(church);
   }
 

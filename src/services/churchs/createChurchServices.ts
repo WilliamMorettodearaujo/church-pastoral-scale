@@ -24,7 +24,7 @@ export class CreateChurchServices {
       );
     }
     try {
-      const church = await this.churchRepository.create(payload);
+      const church = await this.churchRepository.save(payload);
 
       return {
         id: church.id,

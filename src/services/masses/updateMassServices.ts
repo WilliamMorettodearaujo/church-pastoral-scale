@@ -22,7 +22,7 @@ export class UpdateMassServices {
     }
 
     try {
-      const mass = await this.massRepository.update(id, payload);
+      const mass = await this.massRepository.update(id, {});
       return {
         id: mass.id,
         code: mass.code,

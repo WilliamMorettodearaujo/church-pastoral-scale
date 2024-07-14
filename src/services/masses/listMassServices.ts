@@ -18,9 +18,9 @@ export class ListMassServices {
     }
 
     try {
-      const masss = await this.massRepository.getAll(churchId);
+      const masses = await this.massRepository.getAll(churchId);
 
-      return masss.map((mass) => ({
+      return masses.map((mass) => ({
         id: mass.id,
         code: mass.code,
         name: mass.name,
