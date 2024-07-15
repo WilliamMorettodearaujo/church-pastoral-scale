@@ -1,7 +1,7 @@
 import { ExceptionHandler } from "../../exceptions/ExceptionHandler";
 import { IChurchRepository } from "../../repositories/churchs/IchurchRepository";
 import { IPastoralRepository } from "../../repositories/pastorals/IpastoralRepository";
-import { ListUserOutputDTO } from "../users/dtos/listUserOutputDTO";
+import { mapUsers } from "../../utils/mappers/userMapper";
 import { ListPastoralOutputDTO } from "./dtos/listPastoralOutputDTO";
 
 export class ListPastoralServices {
@@ -26,20 +26,10 @@ export class ListPastoralServices {
         name: pastoral.name,
         observation: pastoral.observation,
         enabled: pastoral.enabled,
-        users: pastoral.users ? this.mapUsers(pastoral.users) : [],
+        users: pastoral.users ? mapUsers(pastoral.users) : [],
       }));
     } catch (error) {
       throw new ExceptionHandler("Error", error.message, 500);
     }
-  }
-
-  private mapUsers(users: ListUserOutputDTO[]) {
-    return users.map((user) => ({
-      id: user.id,
-      code: user.code,
-      name: user.name,
-      email: user.email,
-      enabled: user.enabled,
-    }));
   }
 }

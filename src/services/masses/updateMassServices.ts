@@ -1,5 +1,6 @@
 import { ExceptionHandler } from "../../exceptions/ExceptionHandler";
 import { IMassRepository } from "../../repositories/masses/ImassRepository";
+import { mapScales } from "../../utils/mappers/scaleMapper";
 
 import { MassValidador } from "../../validator/massValidador";
 
@@ -33,6 +34,7 @@ export class UpdateMassServices {
           id: mass.church.id,
           corporateName: mass.church.corporateName,
         },
+        scale: mass.massScales ? mapScales(mass.massScales) : [],
         enabled: mass.enabled,
       };
     } catch (error) {

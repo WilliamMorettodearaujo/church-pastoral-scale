@@ -19,11 +19,19 @@ export class MassScalesEntity {
   @JoinColumn({ name: "mass_id" })
   mass: MassEntity;
 
-  @ManyToOne(() => PastoralEntity, (pastoral) => pastoral.pastoralScales)
+  @ManyToOne(() => PastoralEntity, (pastoral) => pastoral.pastoralScales, {
+    eager: true,
+    cascade: true,
+    orphanedRowAction: "delete",
+  })
   @JoinColumn({ name: "pastoral_id" })
   pastoral: PastoralEntity;
 
-  @ManyToMany(() => UserEntity, (user) => user.userScales)
+  @ManyToMany(() => UserEntity, (user) => user.userScales, {
+    eager: true,
+    cascade: true,
+    orphanedRowAction: "delete",
+  })
   @JoinTable({
     name: "mass_scales_users",
     joinColumn: { name: "mass_scale_id", referencedColumnName: "id" },

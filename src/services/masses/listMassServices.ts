@@ -1,6 +1,7 @@
 import { ExceptionHandler } from "../../exceptions/ExceptionHandler";
 import { IChurchRepository } from "../../repositories/churchs/IchurchRepository";
 import { IMassRepository } from "../../repositories/masses/ImassRepository";
+import { mapScales } from "../../utils/mappers/scaleMapper";
 
 import { ListMassOutputDTO } from "./dtos/listMassOutputDTO";
 
@@ -30,6 +31,7 @@ export class ListMassServices {
           id: mass.church.id,
           corporateName: mass.church.corporateName,
         },
+        scale: mass.massScales ? mapScales(mass.massScales) : [],
         enabled: mass.enabled,
       }));
     } catch (error) {

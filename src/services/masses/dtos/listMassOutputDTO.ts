@@ -8,5 +8,16 @@ export interface ListMassOutputDTO {
     id: number;
     corporateName: string;
   };
+  scale: {
+    id: number;
+    pastoral: {
+      id: number;
+      name: string;
+    };
+    user: {
+      id: number;
+      name: string;
+    }[];
+  }[];
   enabled: boolean;
 }
