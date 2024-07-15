@@ -2,7 +2,7 @@ import { ChurchEntity } from "../../entities/churchEntity";
 import { UserEntity } from "../../entities/userEntity";
 
 export interface IUserRepository {
-  create(
+  save(
     user: Partial<UserEntity>,
     church: Partial<ChurchEntity>
   ): Promise<UserEntity>;
@@ -12,4 +12,5 @@ export interface IUserRepository {
   delete(id: string): Promise<void>;
   findByEmail(email: string, churchId?: number): Promise<UserEntity | null>;
   findByIds(ids: number[]): Promise<UserEntity[]>;
+  findByIdAndChurchId(id: number, churchId: number): Promise<UserEntity | null>;
 }

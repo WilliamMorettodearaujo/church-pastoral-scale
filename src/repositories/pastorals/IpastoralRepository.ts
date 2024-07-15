@@ -3,7 +3,7 @@ import { PastoralEntity } from "../../entities/pastoralEntity";
 import { UserEntity } from "../../entities/userEntity";
 
 export interface IPastoralRepository {
-  create(
+  save(
     pastoral: Partial<PastoralEntity>,
     church: Partial<ChurchEntity>,
     users: Partial<UserEntity[]>
@@ -17,6 +17,10 @@ export interface IPastoralRepository {
   delete(id: string): Promise<void>;
   findByNameAndChurch(
     name: string,
+    churchId: number
+  ): Promise<PastoralEntity | null>;
+  findByIdAndChurchId(
+    id: number,
     churchId: number
   ): Promise<PastoralEntity | null>;
 }

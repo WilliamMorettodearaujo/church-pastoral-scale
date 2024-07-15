@@ -5,4 +5,8 @@ export interface CreateMassInputDTO {
   enabled: boolean;
   startDateTime: Date;
   churchId: number;
+  massScales: {
+    pastoralId: number;
+    userId: number[];
+  };
 }

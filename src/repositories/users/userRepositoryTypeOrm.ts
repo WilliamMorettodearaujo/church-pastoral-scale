@@ -8,7 +8,7 @@ export class UserRepositoryTypeOrm implements IUserRepository {
   userRepository = AppDataSource.getRepository(UserEntity);
   churchRepository = AppDataSource.getRepository(ChurchEntity);
 
-  async create(
+  async save(
     user: Partial<UserEntity>,
     church: Partial<ChurchEntity>
   ): Promise<UserEntity> {
@@ -64,6 +64,19 @@ export class UserRepositoryTypeOrm implements IUserRepository {
       where: {
         id: In(ids),
       },
+    });
+  }
+
+  async findByIdAndChurchId(
+    id: number,
+    churchId: number
+  ): Promise<UserEntity | null> {
+    return await this.userRepository.findOne({
+      where: {
+        id: id,
+        church: { id: churchId },
+      },
+      relations: ["church"],
     });
   }
 }

@@ -4,7 +4,7 @@ import { IFederalUnitRepository } from "./IfederalUnitRepository";
 
 export class FederalUnitRepositoryTypeOrm implements IFederalUnitRepository {
   federalUnitRepository = AppDataSource.getRepository(FederalUnitEntity);
-  async create(
+  async save(
     federalUnit: Partial<FederalUnitEntity>
   ): Promise<FederalUnitEntity> {
     return await this.federalUnitRepository.create(federalUnit);

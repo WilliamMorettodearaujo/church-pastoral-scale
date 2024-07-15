@@ -1,5 +1,6 @@
 import { ExceptionHandler } from "../../exceptions/ExceptionHandler";
 import { IMassRepository } from "../../repositories/masses/ImassRepository";
+import { mapScales } from "../../utils/mappers/scaleMapper";
 
 import { MassValidador } from "../../validator/massValidador";
 
@@ -22,7 +23,7 @@ export class UpdateMassServices {
     }
 
     try {
-      const mass = await this.massRepository.update(id, payload);
+      const mass = await this.massRepository.update(id, {});
       return {
         id: mass.id,
         code: mass.code,
@@ -33,6 +34,7 @@ export class UpdateMassServices {
           id: mass.church.id,
           corporateName: mass.church.corporateName,
         },
+        scale: mass.massScales ? mapScales(mass.massScales) : [],
         enabled: mass.enabled,
       };
     } catch (error) {

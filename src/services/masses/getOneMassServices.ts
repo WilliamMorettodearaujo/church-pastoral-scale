@@ -1,5 +1,6 @@
 import { ExceptionHandler } from "../../exceptions/ExceptionHandler";
 import { IMassRepository } from "../../repositories/masses/ImassRepository";
+import { mapScales } from "../../utils/mappers/scaleMapper";
 import { ListMassOutputDTO } from "./dtos/listMassOutputDTO";
 
 export class GetOneMassService {
@@ -10,6 +11,7 @@ export class GetOneMassService {
     if (!mass) {
       throw new ExceptionHandler("Error", "Mass Not Found", 404);
     }
+
     return {
       id: mass.id,
       code: mass.code,
@@ -20,6 +22,7 @@ export class GetOneMassService {
         id: mass.church.id,
         corporateName: mass.church.corporateName,
       },
+      scale: mass.massScales ? mapScales(mass.massScales) : [],
       enabled: mass.enabled,
     };
   }

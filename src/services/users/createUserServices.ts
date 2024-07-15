@@ -48,7 +48,7 @@ export class CreateUserServices {
       payload.password = passwordProvider.execute(payload.password.toString());
 
       delete church.city;
-      const user = await this.userRepository.create(payload, church);
+      const user = await this.userRepository.save(payload, church);
 
       return {
         id: user.id,

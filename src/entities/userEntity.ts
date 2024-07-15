@@ -1,6 +1,7 @@
-import { Column, Entity, JoinColumn, ManyToOne } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToMany, ManyToOne } from "typeorm";
 import { BasisEntity } from "./basisEntity";
 import { ChurchEntity } from "./churchEntity";
+import { MassScalesEntity } from "./massScalesEntity";
 
 @Entity("users")
 export class UserEntity extends BasisEntity {
@@ -44,6 +45,9 @@ export class UserEntity extends BasisEntity {
   @ManyToOne(() => ChurchEntity)
   @JoinColumn({ name: "church_id", referencedColumnName: "id" })
   church: ChurchEntity;
+
+  @ManyToMany(() => MassScalesEntity, (massScale) => massScale.users)
+  userScales: MassScalesEntity[];
 
   @Column({
     name: "enabled",

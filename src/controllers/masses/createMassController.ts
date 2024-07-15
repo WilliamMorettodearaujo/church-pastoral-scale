@@ -2,6 +2,8 @@ import { Request, Response } from "express";
 import { ChurchRepositoryTypeOrm } from "../../repositories/churchs/churchRepositoryTypeOrm";
 import { CommonRepositoryTypeOrm } from "../../repositories/common/commonRepositoryTypeOrm";
 import { MassRepositoryTypeOrm } from "../../repositories/masses/massRepositoryTypeOrm";
+import { PastoralRepositoryTypeOrm } from "../../repositories/pastorals/pastoralRepositoryTypeOrm";
+import { UserRepositoryTypeOrm } from "../../repositories/users/userRepositoryTypeOrm";
 import { CreateMassServices } from "../../services/masses/createMassServices";
 
 export class CreateMassController {
@@ -10,11 +12,15 @@ export class CreateMassController {
     const commonRepository = new CommonRepositoryTypeOrm();
     const massRepository = new MassRepositoryTypeOrm();
     const churchRepository = new ChurchRepositoryTypeOrm();
+    const pastoralRepository = new PastoralRepositoryTypeOrm();
+    const userRepository = new UserRepositoryTypeOrm();
 
     const service = new CreateMassServices(
       commonRepository,
       massRepository,
-      churchRepository
+      churchRepository,
+      pastoralRepository,
+      userRepository
     );
     const output = await service.execute(payload);
 

@@ -5,9 +5,11 @@ import {
   JoinTable,
   ManyToMany,
   ManyToOne,
+  OneToMany,
 } from "typeorm";
 import { BasisEntity } from "./basisEntity";
 import { ChurchEntity } from "./churchEntity";
+import { MassScalesEntity } from "./massScalesEntity";
 import { UserEntity } from "./userEntity";
 
 @Entity("pastorals")
@@ -16,7 +18,7 @@ export class PastoralEntity extends BasisEntity {
     name: "code",
     type: "bigint",
   })
-  code: number;
+  code?: number;
   @Column({
     name: "name",
     type: "varchar",
@@ -40,6 +42,12 @@ export class PastoralEntity extends BasisEntity {
   @ManyToMany(() => UserEntity, { cascade: true, orphanedRowAction: "delete" })
   @JoinTable({ name: "pastorals_users" })
   users: UserEntity[];
+
+  @OneToMany(
+    () => MassScalesEntity,
+    (pastoralScales) => pastoralScales.pastoral
+  )
+  pastoralScales: MassScalesEntity;
 
   @Column({
     name: "enabled",

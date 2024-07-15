@@ -9,17 +9,17 @@ export class PastoralRepositoryTypeOrm implements IPastoralRepository {
   churchRepository = AppDataSource.getRepository(ChurchEntity);
   userRepository = AppDataSource.getRepository(UserEntity);
 
-  async create(
+  async save(
     pastoral: Partial<PastoralEntity>,
     church: Partial<ChurchEntity>,
     users: Partial<UserEntity[]>
   ): Promise<PastoralEntity> {
-    const newPastoral = this.pastoralRepository.create({
+    const entityPastoral = this.pastoralRepository.create({
       ...pastoral,
       church: church,
       users: users,
     });
-    return await this.pastoralRepository.save(newPastoral);
+    return await this.pastoralRepository.save(entityPastoral);
   }
 
   async getById(id: number): Promise<PastoralEntity> {
@@ -63,6 +63,18 @@ export class PastoralRepositoryTypeOrm implements IPastoralRepository {
     return await this.pastoralRepository.findOne({
       where: {
         name: name,
+        church: { id: churchId },
+      },
+      relations: ["church"],
+    });
+  }
+  async findByIdAndChurchId(
+    id: number,
+    churchId: number
+  ): Promise<PastoralEntity | null> {
+    return await this.pastoralRepository.findOne({
+      where: {
+        id: id,
         church: { id: churchId },
       },
       relations: ["church"],
