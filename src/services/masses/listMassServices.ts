@@ -23,6 +23,7 @@ export class ListMassServices {
 
       return masses.map((mass) => ({
         id: mass.id,
+        uuid: mass.uuid,
         code: mass.code,
         name: mass.name,
         startDateTime: mass.startDateTime,

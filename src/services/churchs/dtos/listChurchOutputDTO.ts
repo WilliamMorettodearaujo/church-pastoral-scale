@@ -1,5 +1,6 @@
 export interface ListChurchOutputDTO {
   id: number;
+  uuid: string;
   corporateName: string;
   tradingName: string;
   federalDocument: string;

@@ -37,6 +37,7 @@ export class UpdateChurchServices {
       const church = await this.churchRepository.update(id, payload);
       return {
         id: church.id,
+        uuid: church.uuid,
         corporateName: church.corporateName,
         tradingName: church.tradingName,
         federalDocument: church.federalDocument,

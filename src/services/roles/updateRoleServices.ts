@@ -38,6 +38,7 @@ export class UpdateRoleServices {
 
       return {
         id: role.id,
+        uuid: role.uuid,
         code: role.code,
         name: role.name,
         description: role.description,

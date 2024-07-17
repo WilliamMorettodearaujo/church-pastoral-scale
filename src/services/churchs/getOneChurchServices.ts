@@ -12,6 +12,7 @@ export class GetOneChurchService {
     }
     return {
       id: church.id,
+      uuid: church.uuid,
       corporateName: church.corporateName,
       tradingName: church.tradingName,
       federalDocument: church.federalDocument,

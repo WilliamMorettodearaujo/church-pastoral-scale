@@ -13,6 +13,7 @@ export class GetOnePermissionService {
 
     return {
       id: permission.id,
+      uuid: permission.uuid,
       name: permission.name,
       description: permission.description,
       resource: {

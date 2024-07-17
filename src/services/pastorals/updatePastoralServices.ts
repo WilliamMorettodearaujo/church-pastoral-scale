@@ -50,6 +50,7 @@ export class UpdatePastoralServices {
       const pastoral = await this.pastoralRepository.update(id, payload);
       return {
         id: pastoral.id,
+        uuid: pastoral.uuid,
         code: pastoral.code,
         name: pastoral.name,
         observation: pastoral.observation,

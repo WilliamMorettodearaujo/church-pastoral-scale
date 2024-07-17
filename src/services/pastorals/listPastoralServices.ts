@@ -22,6 +22,7 @@ export class ListPastoralServices {
 
       return pastorals.map((pastoral) => ({
         id: pastoral.id,
+        uuid: pastoral.uuid,
         code: pastoral.code,
         name: pastoral.name,
         observation: pastoral.observation,

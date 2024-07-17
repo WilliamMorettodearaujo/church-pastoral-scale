@@ -3,6 +3,7 @@ import { ListPermissionOutputDTO } from "../../services/permissions/dtos/listPer
 export function mapPermissions(permissions: ListPermissionOutputDTO[]) {
   return permissions.map((permissions) => ({
     id: permissions.id,
+    uuid: permissions.uuid,
     name: permissions.name,
     description: permissions.description,
     resource: {
