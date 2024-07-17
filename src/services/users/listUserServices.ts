@@ -20,6 +20,7 @@ export class ListUserServices {
       const users = await this.userRepository.getAll(churchId);
       return users.map((user) => ({
         id: user.id,
+        uuid: user.uuid,
         code: user.code,
         name: user.name,
         email: user.email,

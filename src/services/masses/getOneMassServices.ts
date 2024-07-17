@@ -14,6 +14,7 @@ export class GetOneMassService {
 
     return {
       id: mass.id,
+      uuid: mass.uuid,
       code: mass.code,
       name: mass.name,
       startDateTime: mass.startDateTime,

@@ -12,6 +12,7 @@ export class GetOneResourceService {
     }
     return {
       id: resource.id,
+      uuid: resource.uuid,
       name: resource.name,
       description: resource.description,
       enabled: resource.enabled,

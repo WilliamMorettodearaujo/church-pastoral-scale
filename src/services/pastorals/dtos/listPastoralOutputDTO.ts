@@ -1,5 +1,6 @@
 export interface ListPastoralOutputDTO {
   id: number;
+  uuid: string;
   code: number;
   name: string;
   observation: string;

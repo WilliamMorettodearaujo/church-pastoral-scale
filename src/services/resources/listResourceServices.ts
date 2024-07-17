@@ -11,6 +11,7 @@ export class ListResourceServices {
 
       return resources.map((resource) => ({
         id: resource.id,
+        uuid: resource.uuid,
         name: resource.name,
         description: resource.description,
         enabled: resource.enabled,

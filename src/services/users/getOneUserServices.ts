@@ -13,6 +13,7 @@ export class GetOneUserService {
 
     return {
       id: user.id,
+      uuid: user.uuid,
       code: user.code,
       name: user.name,
       email: user.email,

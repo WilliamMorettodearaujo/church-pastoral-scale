@@ -22,6 +22,7 @@ export class ListRoleServices {
 
       return roles.map((role) => ({
         id: role.id,
+        uuid: role.uuid,
         code: role.code,
         name: role.name,
         description: role.description,

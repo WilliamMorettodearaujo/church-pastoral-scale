@@ -45,6 +45,7 @@ export class UpdatePermissionServices {
       const permission = await this.permissionRepository.update(id, payload);
       return {
         id: permission.id,
+        uuid: permission.uuid,
         name: permission.name,
         description: permission.description,
         resource: {

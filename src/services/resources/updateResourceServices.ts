@@ -33,6 +33,7 @@ export class UpdateResourceServices {
       const resource = await this.resourceRepository.update(id, payload);
       return {
         id: resource.id,
+        uuid: resource.uuid,
         name: resource.name,
         description: resource.description,
         enabled: resource.enabled,

@@ -11,6 +11,7 @@ export class ListPermissionServices {
 
       return permission.map((permission) => ({
         id: permission.id,
+        uuid: permission.uuid,
         name: permission.name,
         description: permission.description,
         resource: {

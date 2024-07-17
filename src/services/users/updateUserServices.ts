@@ -40,6 +40,7 @@ export class UpdateUserServices {
       const user = await this.userRepository.update(id, payload);
       return {
         id: user.id,
+        uuid: user.uuid,
         code: user.code,
         name: user.name,
         email: user.email,

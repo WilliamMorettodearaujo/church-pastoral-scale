@@ -26,6 +26,7 @@ export class UpdateMassServices {
       const mass = await this.massRepository.update(id, {});
       return {
         id: mass.id,
+        uuid: mass.uuid,
         code: mass.code,
         name: mass.name,
         startDateTime: mass.startDateTime,
