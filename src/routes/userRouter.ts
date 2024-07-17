@@ -36,7 +36,8 @@ userRoutes.get(
 userRoutes.patch(
   "/:id",
   use((req: Request, res: Response) => {
+    const id = parseInt(req.params.id);
     const controller = new UpdateUserController();
-    return controller.handle(parseInt(req.params.id), req, res);
+    return controller.handle(id, req, res);
   })
 );

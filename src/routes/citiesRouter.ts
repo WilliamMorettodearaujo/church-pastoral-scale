@@ -18,8 +18,9 @@ cityRoutes.post(
 cityRoutes.get(
   "/:id",
   use((req: Request, res: Response) => {
+    const id = parseInt(req.params.id);
     const controller = new GetOneCityController();
-    return controller.handle(parseInt(req.params.id), res);
+    return controller.handle(id, res);
   })
 );
 
@@ -34,7 +35,8 @@ cityRoutes.get(
 cityRoutes.patch(
   "/:id",
   use((req: Request, res: Response) => {
+    const id = parseInt(req.params.id);
     const controller = new UpdateCityController();
-    return controller.handle(parseInt(req.params.id), req, res);
+    return controller.handle(id, req, res);
   })
 );

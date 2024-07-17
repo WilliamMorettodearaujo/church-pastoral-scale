@@ -1,10 +1,9 @@
-import { Request, Response } from "express";
+import { Response } from "express";
 import { ConsultCnpjServices } from "../../../services/utilitys/consultCnpj/consultCnpjServices";
 
 export class ConsultCnpjController {
-  public async handle(req: Request, res: Response) {
+  public async handle(cnpj: string, res: Response) {
     {
-      const cnpj = req.params.cnpj;
       const service = new ConsultCnpjServices();
       const output = await service.execute(cnpj);
 

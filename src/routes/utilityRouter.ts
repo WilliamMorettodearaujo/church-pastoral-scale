@@ -8,15 +8,17 @@ export const utilityRouters = Router();
 utilityRouters.get(
   "/cep/:cep",
   use((req: Request, res: Response) => {
+    const cep = req.params.cep;
     const controller = new ConsultCepController();
-    return controller.handle(req, res);
+    return controller.handle(cep, res);
   })
 );
 
 utilityRouters.get(
   "/cnpj/:cnpj",
   use((req: Request, res: Response) => {
+    const cnpj = req.params.cnpj;
     const controller = new ConsultCnpjController();
-    return controller.handle(req, res);
+    return controller.handle(cnpj, res);
   })
 );
