@@ -7,7 +7,7 @@ export class FederalUnitRepositoryTypeOrm implements IFederalUnitRepository {
   async save(
     federalUnit: Partial<FederalUnitEntity>
   ): Promise<FederalUnitEntity> {
-    return await this.federalUnitRepository.create(federalUnit);
+    return await this.federalUnitRepository.save(federalUnit);
   }
   async getById(uf: string): Promise<FederalUnitEntity> {
     return await this.federalUnitRepository.findOne({ where: { uf: uf } });

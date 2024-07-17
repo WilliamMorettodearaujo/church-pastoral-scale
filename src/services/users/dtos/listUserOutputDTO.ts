@@ -1,3 +1,5 @@
+import { ListRoleOutputDTO } from "../../roles/dtos/listRoleOutputDTO";
+
 export interface ListUserOutputDTO {
   id: number;
   code: number;
@@ -7,5 +9,6 @@ export interface ListUserOutputDTO {
     id: number;
     corporateName: string;
   };
+  role: ListRoleOutputDTO;
   enabled: boolean;
 }

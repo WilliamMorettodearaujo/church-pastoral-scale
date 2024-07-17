@@ -1,6 +1,7 @@
 import { In } from "typeorm";
 import { AppDataSource } from "../../data-source";
 import { ChurchEntity } from "../../entities/churchEntity";
+import { RoleEntity } from "../../entities/roleEntity";
 import { UserEntity } from "../../entities/userEntity";
 import { IUserRepository } from "./IuserRepository";
 
@@ -10,11 +11,13 @@ export class UserRepositoryTypeOrm implements IUserRepository {
 
   async save(
     user: Partial<UserEntity>,
-    church: Partial<ChurchEntity>
+    church: Partial<ChurchEntity>,
+    role: Partial<RoleEntity>
   ): Promise<UserEntity> {
     const newUser = await this.userRepository.create({
       ...user,
       church: church,
+      role: role,
     });
     return await this.userRepository.save(newUser);
   }
@@ -22,21 +25,21 @@ export class UserRepositoryTypeOrm implements IUserRepository {
   async getById(id: number): Promise<UserEntity> {
     return await this.userRepository.findOne({
       where: { id: id },
-      relations: ["church"],
+      relations: ["church", "role"],
     });
   }
 
   async getAll(churchId: number): Promise<UserEntity[]> {
     return await this.userRepository.find({
       where: { church: { id: churchId } },
-      relations: ["church"],
+      relations: ["church", "role"],
     });
   }
 
   async update(id: number, user: Partial<UserEntity>): Promise<UserEntity> {
     const entity = await this.userRepository.findOne({
       where: { id: id },
-      relations: ["church"],
+      relations: ["church", "role"],
     });
     this.userRepository.merge(entity, user);
     return await this.userRepository.save(entity);

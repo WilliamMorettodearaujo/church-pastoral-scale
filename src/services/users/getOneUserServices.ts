@@ -10,6 +10,7 @@ export class GetOneUserService {
     if (!user) {
       throw new ExceptionHandler("Error", "User Not Found", 404);
     }
+
     return {
       id: user.id,
       code: user.code,
@@ -19,6 +20,7 @@ export class GetOneUserService {
         id: user.church.id,
         corporateName: user.church.corporateName,
       },
+      role: user.role,
       enabled: user.enabled,
     };
   }
