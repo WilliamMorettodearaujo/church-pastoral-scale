@@ -1,5 +1,6 @@
 import { ExceptionHandler } from "../../exceptions/ExceptionHandler";
 import { IPastoralRepository } from "../../repositories/pastorals/IpastoralRepository";
+import { mapUsers } from "../../utils/mappers/userMapper";
 import { ListPastoralOutputDTO } from "./dtos/listPastoralOutputDTO";
 
 export class GetOnePastoralService {
@@ -11,16 +12,6 @@ export class GetOnePastoralService {
       throw new ExceptionHandler("Error", "Pastoral Not Found", 404);
     }
 
-    const users = pastoral.users.map((user) => {
-      return {
-        id: user.id,
-        code: user.code,
-        name: user.name,
-        email: user.email,
-        enabled: user.enabled,
-      };
-    });
-
     return {
       id: pastoral.id,
       code: pastoral.code,
@@ -31,7 +22,7 @@ export class GetOnePastoralService {
         corporateName: pastoral.church.corporateName,
       },
       enabled: pastoral.enabled,
-      users: users,
+      users: pastoral.users ? mapUsers(pastoral.users) : [],
     };
   }
 }

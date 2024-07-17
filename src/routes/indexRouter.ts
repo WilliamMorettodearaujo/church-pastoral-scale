@@ -7,6 +7,9 @@ import { federalUnitRoutes } from "./federalUnitRouter";
 import { massRoutes } from "./massRouter";
 import { exceptionMiddleware } from "./middlewares/exceptionMiddleware";
 import { pastoralRoutes } from "./pastoralRouter";
+import { permissionRoutes } from "./permissionRouter";
+import { resourceRoutes } from "./resourcesRouter";
+import { roleRoutes } from "./rolesRouter";
 import { userRoutes } from "./userRouter";
 import { utilityRouters } from "./utilityRouter";
 
@@ -29,6 +32,10 @@ router.use("/pastoral", authenticationMiddleware, pastoralRoutes);
 router.use("/mass", authenticationMiddleware, massRoutes);
 router.use("/user", authenticationMiddleware, userRoutes);
 router.use("/utility", authenticationMiddleware, utilityRouters);
+router.use("/resource", authenticationMiddleware, resourceRoutes);
+router.use("/permission", authenticationMiddleware, permissionRoutes);
+router.use("/role", authenticationMiddleware, roleRoutes);
+
 router.use("/authentication", authenticationRouters);
 
 router.use(exceptionMiddleware);

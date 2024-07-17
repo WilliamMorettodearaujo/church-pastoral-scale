@@ -1,10 +1,12 @@
 import { ChurchEntity } from "../../entities/churchEntity";
+import { RoleEntity } from "../../entities/roleEntity";
 import { UserEntity } from "../../entities/userEntity";
 
 export interface IUserRepository {
   save(
     user: Partial<UserEntity>,
-    church: Partial<ChurchEntity>
+    church: Partial<ChurchEntity>,
+    role: Partial<RoleEntity>
   ): Promise<UserEntity>;
   getById(id: number): Promise<UserEntity | null>;
   getAll(churchId: number): Promise<UserEntity[]>;

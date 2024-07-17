@@ -4,5 +4,6 @@ export interface CreateUserInputDTO {
   email: string;
   password: string;
   churchId: number;
+  roleId: number;
   enabled: boolean;
 }

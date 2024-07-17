@@ -1,6 +1,7 @@
 import { ExceptionHandler } from "../../exceptions/ExceptionHandler";
 import { IPastoralRepository } from "../../repositories/pastorals/IpastoralRepository";
 import { IUserRepository } from "../../repositories/users/IuserRepository";
+import { mapUsers } from "../../utils/mappers/userMapper";
 import { PastoralValidador } from "../../validator/pastoralValidador";
 
 import { CreatePastoralInputDTO } from "./dtos/createPastoralInputDTO";
@@ -57,13 +58,7 @@ export class UpdatePastoralServices {
           corporateName: pastoral.church.corporateName,
         },
         enabled: pastoral.enabled,
-        users: pastoral.users.map((user) => ({
-          id: user.id,
-          code: user.code,
-          name: user.name,
-          email: user.email,
-          enabled: user.enabled,
-        })),
+        users: pastoral.users ? mapUsers(pastoral.users) : [],
       };
     } catch (error) {
       throw new ExceptionHandler("Error", error.message, 500);

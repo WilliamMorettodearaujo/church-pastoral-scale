@@ -27,6 +27,7 @@ export class ListUserServices {
           id: user.church.id,
           corporateName: user.church.corporateName,
         },
+        role: user.role,
         enabled: user.enabled,
       }));
     } catch (error) {

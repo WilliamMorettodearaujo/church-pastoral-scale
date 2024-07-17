@@ -12,6 +12,7 @@ export class UserValidador {
       .keys({
         name: joi.string().required(),
         churchId: joi.number().required(),
+        roleId: joi.number().required(),
         email: joi.string().email().required(),
         password: joi.string().min(8).required(),
         enabled: joi.boolean(),

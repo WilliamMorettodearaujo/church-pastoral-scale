@@ -2,6 +2,7 @@ import { ExceptionHandler } from "../../exceptions/ExceptionHandler";
 import { EncriptPasswordProvider } from "../../providers/passwords/encryptPasswordProvider";
 import { IChurchRepository } from "../../repositories/churchs/IchurchRepository";
 import { ICommonRepository } from "../../repositories/common/IcommonRepository";
+import { IRoleRepository } from "../../repositories/roles/IroleRepository";
 import { IUserRepository } from "../../repositories/users/IuserRepository";
 import { UserValidador } from "../../validator/userValidador";
 import { CreateUserInputDTO } from "./dtos/createUserInputDTO";
@@ -11,7 +12,8 @@ export class CreateUserServices {
   constructor(
     readonly commonRepository: ICommonRepository,
     readonly userRepository: IUserRepository,
-    readonly churchRepository: IChurchRepository
+    readonly churchRepository: IChurchRepository,
+    readonly roleRepository: IRoleRepository
   ) {}
 
   public async execute(
@@ -38,6 +40,12 @@ export class CreateUserServices {
       throw new ExceptionHandler("Error", "Church not found", 404);
     }
 
+    const role = await this.roleRepository.getById(payload.roleId);
+
+    if (!role) {
+      throw new ExceptionHandler("Error", "Role not found", 404);
+    }
+
     try {
       payload.code = await this.commonRepository.lastCodeByChurch(
         "users",
@@ -48,7 +56,7 @@ export class CreateUserServices {
       payload.password = passwordProvider.execute(payload.password.toString());
 
       delete church.city;
-      const user = await this.userRepository.save(payload, church);
+      const user = await this.userRepository.save(payload, church, role);
 
       return {
         id: user.id,
