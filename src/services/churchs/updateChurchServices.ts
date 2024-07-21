@@ -17,7 +17,11 @@ export class UpdateChurchServices {
     const churchAlreadyExists = await this.churchRepository.getById(id);
 
     if (!churchAlreadyExists) {
-      throw new ExceptionHandler("Error", `Church ${id} Not Found`, 404);
+      throw new ExceptionHandler(
+        "NotFoundError",
+        `Church ${id} Not Found`,
+        404
+      );
     }
 
     const churchDocumentFederal =
@@ -27,7 +31,7 @@ export class UpdateChurchServices {
 
     if (churchDocumentFederal && churchDocumentFederal.id != id) {
       throw new ExceptionHandler(
-        "Error",
+        "ConflictError",
         `Church with federal document ${payload.federalDocument} already exists`,
         409
       );

@@ -21,7 +21,7 @@ export class UpdatePermissionServices {
 
     if (!permissionAlreadyExists) {
       throw new ExceptionHandler(
-        "Error",
+        "NotFoundError",
         `Permission Resources ${id} Not Found`,
         404
       );
@@ -35,7 +35,7 @@ export class UpdatePermissionServices {
 
     if (permissionAndChurch && permissionAndChurch.id != id) {
       throw new ExceptionHandler(
-        "Error",
+        "ConflictError",
         `Permission ${payload.name} already exists to for ${payload.resourceId}`,
         409
       );

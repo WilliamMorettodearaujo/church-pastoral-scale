@@ -8,7 +8,7 @@ export class GetOneChurchService {
   public async execute(id: number): Promise<ListChurchOutputDTO> {
     const church = await this.churchRepository.getById(id);
     if (!church) {
-      throw new ExceptionHandler("Error", "Church Not Found", 404);
+      throw new ExceptionHandler("NotFoundError", "Church Not Found", 404);
     }
     return {
       id: church.id,

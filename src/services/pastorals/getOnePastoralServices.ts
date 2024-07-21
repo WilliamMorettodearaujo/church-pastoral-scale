@@ -9,7 +9,7 @@ export class GetOnePastoralService {
   public async execute(id: number): Promise<ListPastoralOutputDTO> {
     const pastoral = await this.pastoralRepository.getById(id);
     if (!pastoral) {
-      throw new ExceptionHandler("Error", "Pastoral Not Found", 404);
+      throw new ExceptionHandler("NotFoundError", "Pastoral Not Found", 404);
     }
 
     return {

@@ -17,7 +17,7 @@ export class UpdateCityServices {
 
     if (!cityAlreadyExists) {
       throw new ExceptionHandler(
-        "Error",
+        "NotFoundError",
         `City ${payload.name} Not Found`,
         404
       );
@@ -28,7 +28,7 @@ export class UpdateCityServices {
 
     if (cityWithSameNameAndUf && cityWithSameNameAndUf.id !== id) {
       throw new ExceptionHandler(
-        "Error",
+        "ConflictError",
         `City with name ${payload.name} and UF ${payload.uf} already exists`,
         409
       );

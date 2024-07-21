@@ -8,7 +8,11 @@ export class GetOneFederalUnitService {
   public async execute(uf: string): Promise<ListFederalUnitOutputDTO> {
     const federalUnit = await this.federalUnitRepository.getById(uf);
     if (!federalUnit) {
-      throw new ExceptionHandler("Error", "Federal Unit Not Found", 404);
+      throw new ExceptionHandler(
+        "NotFoundError",
+        "Federal Unit Not Found",
+        404
+      );
     }
     return {
       uf: federalUnit.uf,

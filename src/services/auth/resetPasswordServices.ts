@@ -30,7 +30,11 @@ export class ResetPasswordServices {
         message: "Reset Password com sucesso",
       };
     } else {
-      throw new ExceptionHandler("Error", "token is not valid", 401);
+      throw new ExceptionHandler(
+        "UnauthorizedError",
+        "token is not valid",
+        401
+      );
     }
   }
 }

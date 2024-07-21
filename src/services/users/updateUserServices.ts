@@ -17,7 +17,7 @@ export class UpdateUserServices {
     const userAlreadyExists = await this.userRepository.getById(id);
 
     if (!userAlreadyExists) {
-      throw new ExceptionHandler("Error", `User ${id} Not Found`, 404);
+      throw new ExceptionHandler("NotFoundError", `User ${id} Not Found`, 404);
     }
 
     const userAndChurch = await this.userRepository.findByEmail(
@@ -27,7 +27,7 @@ export class UpdateUserServices {
 
     if (userAndChurch && userAndChurch.id != id) {
       throw new ExceptionHandler(
-        "Error",
+        "ConflictError",
         `User with email: ${payload.email} already exists for the ${payload.churchId}`,
         409
       );

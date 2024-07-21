@@ -8,7 +8,7 @@ export class GetOneUserService {
   public async execute(id: number): Promise<ListUserOutputDTO> {
     const user = await this.userRepository.getById(id);
     if (!user) {
-      throw new ExceptionHandler("Error", "User Not Found", 404);
+      throw new ExceptionHandler("NotFoundError", "User Not Found", 404);
     }
 
     return {

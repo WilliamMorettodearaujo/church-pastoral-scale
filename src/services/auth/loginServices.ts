@@ -12,7 +12,7 @@ export class LoginServices {
 
     if (!user) {
       throw new ExceptionHandler(
-        "Error",
+        "NotFoundError",
         `Email ${payload.email} not already exists`,
         401
       );

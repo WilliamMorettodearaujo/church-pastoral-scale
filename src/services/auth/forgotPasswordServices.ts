@@ -20,7 +20,7 @@ export class ForgotPasswordService {
     const userAlreadyExists = await this.userRepository.findByEmail(email);
 
     if (!userAlreadyExists) {
-      throw new ExceptionHandler("Error", "Email not found", 404);
+      throw new ExceptionHandler("NotFoundError", "Email not found", 404);
     }
 
     if (userAlreadyExists) {

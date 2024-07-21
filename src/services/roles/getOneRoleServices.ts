@@ -9,7 +9,7 @@ export class GetOneRoleService {
   public async execute(id: number): Promise<ListRoleOutputDTO> {
     const role = await this.roleRepository.getById(id);
     if (!role) {
-      throw new ExceptionHandler("Error", "Role Not Found", 404);
+      throw new ExceptionHandler("NotFoundError", "Role Not Found", 404);
     }
 
     return {

@@ -15,7 +15,11 @@ export class RefreshTokenServices {
         token: refreshToken,
       };
     } else {
-      throw new ExceptionHandler("Error", "The provided token is invalid", 401);
+      throw new ExceptionHandler(
+        "UnauthorizedError",
+        "The provided token is invalid",
+        401
+      );
     }
   }
 }

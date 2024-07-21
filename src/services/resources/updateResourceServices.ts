@@ -16,14 +16,18 @@ export class UpdateResourceServices {
     const resourceAlreadyExists = await this.resourceRepository.getById(id);
 
     if (!resourceAlreadyExists) {
-      throw new ExceptionHandler("Error", `Resource ${id} Not Found`, 404);
+      throw new ExceptionHandler(
+        "NotFoundError",
+        `Resource ${id} Not Found`,
+        404
+      );
     }
 
     const resource = await this.resourceRepository.findByName(payload.name);
 
     if (resource && resource.id != id) {
       throw new ExceptionHandler(
-        "Error",
+        "ConflictError",
         `Resource with ${payload.name} already exists`,
         409
       );

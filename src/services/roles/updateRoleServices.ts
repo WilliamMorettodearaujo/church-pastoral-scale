@@ -17,7 +17,7 @@ export class UpdateRoleServices {
     const roleAlreadyExists = await this.roleRepository.getById(id);
 
     if (!roleAlreadyExists) {
-      throw new ExceptionHandler("Error", `Role ${id} Not Found`, 404);
+      throw new ExceptionHandler("NotFoundError", `Role ${id} Not Found`, 404);
     }
 
     const roleAndChurch = await this.roleRepository.findByNameAndChurch(
@@ -27,7 +27,7 @@ export class UpdateRoleServices {
 
     if (roleAndChurch && roleAndChurch.id != id) {
       throw new ExceptionHandler(
-        "Error",
+        "ConflictError",
         `Role ${payload.name} already exists to for ${payload.churchId}`,
         409
       );

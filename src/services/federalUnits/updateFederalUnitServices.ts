@@ -18,7 +18,7 @@ export class UpdateFederalUnitServices {
 
     if (!federalUnitAlreadyExists) {
       throw new ExceptionHandler(
-        "Error",
+        "NotFoundError",
         `Federal Document ${uf} Not Found`,
         404
       );
@@ -26,7 +26,7 @@ export class UpdateFederalUnitServices {
 
     if (federalUnitAlreadyExists.uf !== payload.uf) {
       throw new ExceptionHandler(
-        "Error",
+        "ConflictError",
         `Federal Document ${payload.uf} already exists`,
         409
       );

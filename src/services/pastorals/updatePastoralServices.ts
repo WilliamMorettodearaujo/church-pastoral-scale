@@ -22,7 +22,11 @@ export class UpdatePastoralServices {
     const pastoralAlreadyExists = await this.pastoralRepository.getById(id);
 
     if (!pastoralAlreadyExists) {
-      throw new ExceptionHandler("Error", `Pastoral ${id} Not Found`, 404);
+      throw new ExceptionHandler(
+        "NotFoundError",
+        `Pastoral ${id} Not Found`,
+        404
+      );
     }
 
     const pastoralAndChurch = await this.pastoralRepository.findByNameAndChurch(
@@ -32,7 +36,7 @@ export class UpdatePastoralServices {
 
     if (pastoralAndChurch && pastoralAndChurch.id != id) {
       throw new ExceptionHandler(
-        "Error",
+        "ConflictError",
         `Pastoral ${payload.name} already exists to for ${payload.churchId}`,
         409
       );
@@ -42,7 +46,11 @@ export class UpdatePastoralServices {
 
     for (const userId of userIds) {
       if (!(await this.userRepository.getById(userId))) {
-        throw new ExceptionHandler("Error", `User id ${userId} not found`, 404);
+        throw new ExceptionHandler(
+          "NotFoundError",
+          `User id ${userId} not found`,
+          404
+        );
       }
     }
 

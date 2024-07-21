@@ -15,7 +15,7 @@ export class ListMassServices {
     const church = await this.churchRepository.getById(churchId);
 
     if (!church) {
-      throw new ExceptionHandler("Error", "Church Not Found", 404);
+      throw new ExceptionHandler("NotFoundError", "Church Not Found", 404);
     }
 
     try {

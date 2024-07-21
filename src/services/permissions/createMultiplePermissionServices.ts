@@ -15,7 +15,11 @@ export class CreateMultiplePermissionServices {
     payload: CreatePermissionInputDTO[]
   ): Promise<createPermissionOutputDTO[]> {
     if (!Array.isArray(payload)) {
-      throw new ExceptionHandler("Error", "Payload must be an array", 400);
+      throw new ExceptionHandler(
+        "NotArrayError",
+        "Payload must be an array",
+        400
+      );
     }
 
     const outputs: createPermissionOutputDTO[] = [];
@@ -30,7 +34,7 @@ export class CreateMultiplePermissionServices {
 
       if (permissionAlreadyExists) {
         throw new ExceptionHandler(
-          "Error",
+          "ConflictError",
           `Permission Resources ${PermissionResource.name} already exists in the resource ${PermissionResource.resourceId}`,
           409
         );
@@ -41,7 +45,7 @@ export class CreateMultiplePermissionServices {
       );
 
       if (!resource) {
-        throw new ExceptionHandler("Error", "Resource not found", 404);
+        throw new ExceptionHandler("NotFoundError", "Resource not found", 404);
       }
 
       try {

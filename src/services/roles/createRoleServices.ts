@@ -27,7 +27,7 @@ export class CreateRoleServices {
 
     if (roleAlreadyExists) {
       throw new ExceptionHandler(
-        "Error",
+        "ConflictError",
         `Role ${payload.name} already exists`,
         409
       );
@@ -44,7 +44,7 @@ export class CreateRoleServices {
           permissions.push(permission);
         } else {
           throw new ExceptionHandler(
-            "Error",
+            "NotFoundError",
             `User id ${permissionsId} not found`,
             404
           );
@@ -54,7 +54,7 @@ export class CreateRoleServices {
     const church = await this.churchRepository.getById(payload.churchId);
 
     if (!church) {
-      throw new ExceptionHandler("Error", "Church not found", 404);
+      throw new ExceptionHandler("NotFoundError", "Church not found", 404);
     }
 
     try {

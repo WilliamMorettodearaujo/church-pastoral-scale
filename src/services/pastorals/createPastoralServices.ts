@@ -28,7 +28,7 @@ export class CreatePastoralServices {
 
     if (pastoralAlreadyExists) {
       throw new ExceptionHandler(
-        "Error",
+        "ConflictError",
         `Pastoral ${payload.name} already exists`,
         409
       );
@@ -37,7 +37,7 @@ export class CreatePastoralServices {
     const church = await this.churchRepository.getById(payload.churchId);
 
     if (!church) {
-      throw new ExceptionHandler("Error", "Church not found", 404);
+      throw new ExceptionHandler("NotFoundError", "Church not found", 404);
     }
 
     const users = [];
@@ -50,7 +50,7 @@ export class CreatePastoralServices {
           users.push(user);
         } else {
           throw new ExceptionHandler(
-            "Error",
+            "NotFoundError",
             `User id ${userId} not found`,
             404
           );

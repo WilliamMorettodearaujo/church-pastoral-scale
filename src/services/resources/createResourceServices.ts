@@ -17,7 +17,7 @@ export class CreateResourceServices {
     );
     if (nameAlreadyExists) {
       throw new ExceptionHandler(
-        "Error",
+        "ConflictError",
         `Resource ${payload.name} already exists`,
         409
       );

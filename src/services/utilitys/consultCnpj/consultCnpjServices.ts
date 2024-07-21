@@ -14,7 +14,7 @@ export class ConsultCnpjServices {
 
     if (dataCnpj.status === 429) {
       throw new ExceptionHandler(
-        "Error",
+        "ManyRequestError",
         "Many requests. Please try again later.",
         429
       );

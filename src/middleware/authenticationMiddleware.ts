@@ -25,7 +25,7 @@ export const authenticationMiddleware = async (
   const permissions = await service.execute(roleId);
 
   if (!permissions) {
-    throw new ExceptionHandler("Error", "Unauthorized Access", 404);
+    throw new ExceptionHandler("UnauthorizedError", "Unauthorized Access", 404);
   }
 
   const access = req.baseUrl.split("/").join("");

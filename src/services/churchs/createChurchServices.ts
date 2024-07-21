@@ -18,7 +18,7 @@ export class CreateChurchServices {
       );
     if (documentAlreadyExists) {
       throw new ExceptionHandler(
-        "Error",
+        "ConflictError",
         `Federal Document ${payload.federalDocument} already exists`,
         409
       );

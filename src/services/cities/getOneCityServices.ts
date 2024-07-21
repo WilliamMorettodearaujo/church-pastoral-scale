@@ -9,7 +9,7 @@ export class GetOneCityService {
     const city = await this.cityRepository.getById(id);
 
     if (!city) {
-      throw new ExceptionHandler("Error", "City Not Found", 404);
+      throw new ExceptionHandler("NotFoundError", "City Not Found", 404);
     }
     return {
       id: city.id,

@@ -28,7 +28,7 @@ export class CreateMassServices {
     const church = await this.churchRepository.getById(payload.churchId);
 
     if (!church) {
-      throw new ExceptionHandler("Error", "Church not found", 404);
+      throw new ExceptionHandler("NotFoundError", "Church not found", 404);
     }
 
     let users: UserEntity[] = [];
@@ -86,7 +86,11 @@ export class CreateMassServices {
       if (userEntity) {
         users.push(userEntity);
       } else {
-        throw new ExceptionHandler("Error", `User id ${userId} not found`, 404);
+        throw new ExceptionHandler(
+          "NotFoundError",
+          `User id ${userId} not found`,
+          404
+        );
       }
     }
     return users;
@@ -106,7 +110,7 @@ export class CreateMassServices {
       return pastoralEntity;
     } else {
       throw new ExceptionHandler(
-        "Error",
+        "NotFoundError",
         `Pastoral id ${pastoralId} not found`,
         404
       );

@@ -18,7 +18,7 @@ export class CreateFederalUnitServices {
 
     if (ufAlreadyExists) {
       throw new ExceptionHandler(
-        "Error",
+        "ConflictError",
         `Federal Document ${payload.uf} already exists`,
         409
       );

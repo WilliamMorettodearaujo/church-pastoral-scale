@@ -14,7 +14,7 @@ export class ConsultCepServices {
 
     if (dataCep.status === 429) {
       throw new ExceptionHandler(
-        "Error",
+        "ManyRequestError",
         "Many requests. Please try again later.",
         429
       );

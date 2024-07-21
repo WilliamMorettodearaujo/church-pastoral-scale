@@ -16,7 +16,7 @@ export class CreateCityServices {
 
     if (cityAlreadyExists) {
       throw new ExceptionHandler(
-        "Error",
+        "ConflictError",
         `City ${payload.name} and UF ${payload.uf} already exists`,
         409
       );

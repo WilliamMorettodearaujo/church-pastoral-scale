@@ -28,7 +28,7 @@ export class CreateUserServices {
 
     if (userAlreadyExists) {
       throw new ExceptionHandler(
-        "Error",
+        "ConflictError",
         `Email ${payload.email} already exists for the church ${payload.churchId}`,
         409
       );
@@ -37,13 +37,13 @@ export class CreateUserServices {
     const church = await this.churchRepository.getById(payload.churchId);
 
     if (!church) {
-      throw new ExceptionHandler("Error", "Church not found", 404);
+      throw new ExceptionHandler("NotFoundError", "Church not found", 404);
     }
 
     const role = await this.roleRepository.getById(payload.roleId);
 
     if (!role) {
-      throw new ExceptionHandler("Error", "Role not found", 404);
+      throw new ExceptionHandler("NotFoundError", "Role not found", 404);
     }
 
     try {

@@ -9,7 +9,7 @@ export class GetOneMassService {
   public async execute(id: number): Promise<ListMassOutputDTO> {
     const mass = await this.massRepository.getById(id);
     if (!mass) {
-      throw new ExceptionHandler("Error", "Mass Not Found", 404);
+      throw new ExceptionHandler("NotFoundError", "Mass Not Found", 404);
     }
 
     return {

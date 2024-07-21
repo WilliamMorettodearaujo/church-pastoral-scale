@@ -8,7 +8,7 @@ export class GetOneResourceService {
   public async execute(id: number): Promise<ListResourceOutputDTO> {
     const resource = await this.resourceRepository.getById(id);
     if (!resource) {
-      throw new ExceptionHandler("Error", "Resource Not Found", 404);
+      throw new ExceptionHandler("NotFoundError", "Resource Not Found", 404);
     }
     return {
       id: resource.id,

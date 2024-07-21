@@ -24,7 +24,7 @@ export class CreatePermissionServices {
 
     if (permissionAlreadyExists) {
       throw new ExceptionHandler(
-        "Error",
+        "ConflictError",
         `Permission Resources ${payload.name} already exists in the resource ${payload.resourceId}`,
         409
       );
@@ -33,7 +33,7 @@ export class CreatePermissionServices {
     const resource = await this.resourceRepository.getById(payload.resourceId);
 
     if (!resource) {
-      throw new ExceptionHandler("Error", "Resource not found", 404);
+      throw new ExceptionHandler("NotFoundError", "Resource not found", 404);
     }
 
     try {

@@ -8,7 +8,7 @@ export class GetOnePermissionService {
   public async execute(id: number): Promise<ListPermissionOutputDTO> {
     const permission = await this.permissionRepository.getById(id);
     if (!permission) {
-      throw new ExceptionHandler("Error", "Permission Not Found", 404);
+      throw new ExceptionHandler("NotFoundError", "Permission Not Found", 404);
     }
 
     return {
