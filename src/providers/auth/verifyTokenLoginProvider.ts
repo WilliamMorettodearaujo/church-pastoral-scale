@@ -4,7 +4,7 @@ export class VerifyTokenLoginProvider {
 
   public async handle(token: string) {
     try {
-      if (await jwt.verify(token, this.loginSecret)) return true;
+      return await jwt.verify(token, this.loginSecret);
     } catch (err) {
       return false;
     }
