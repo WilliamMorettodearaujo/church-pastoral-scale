@@ -22,7 +22,11 @@ export class LoginServices {
     if (await decriptPassword.execute(payload.password, user.password)) {
       const provider = await new GenerateTokenLoginProvider();
 
-      const token = await provider.execute(user.id, user.role.id);
+      const token = await provider.execute(
+        user.id,
+        user.role.id,
+        user.church.id
+      );
       return {
         token: token,
       };

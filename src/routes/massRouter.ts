@@ -3,6 +3,7 @@ import { CreateMassController } from "../controllers/masses/createMassController
 import { GetOneMassController } from "../controllers/masses/getOneMassController";
 import { ListMassController } from "../controllers/masses/listMassController";
 import { UpdateMassController } from "../controllers/masses/updateMassController";
+import { verifyToken } from "../middleware/authenticationMiddleware";
 import { use } from "./middlewares/exeptions";
 
 export const massRoutes = Router();
@@ -25,9 +26,10 @@ massRoutes.get(
 );
 
 massRoutes.get(
-  "/church/:churchId",
+  "/",
   use((req: Request, res: Response) => {
-    const churchId = parseInt(req.params.churchId);
+    const decodeToken = verifyToken(req, res);
+    const churchId = decodeToken["churchId"];
     const controller = new ListMassController();
     return controller.handle(churchId, res);
   })

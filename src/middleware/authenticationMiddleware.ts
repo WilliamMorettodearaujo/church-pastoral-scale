@@ -9,16 +9,7 @@ export const authenticationMiddleware = async (
   res: Response,
   next: NextFunction
 ) => {
-  const token = req.header("Authorization")?.replace("Bearer ", "");
-
-  if (!token)
-    return res.status(401).json({
-      sucess: false,
-      message: "token not provided",
-    });
-
-  const verifyToken = new VerifyTokenLoginProvider();
-  const decodedToken = await verifyToken.handle(token);
+  const decodedToken = await verifyToken(req, res);
 
   if (!decodedToken)
     return res.status(401).json({
@@ -26,7 +17,7 @@ export const authenticationMiddleware = async (
       message: "invalid token",
     });
 
-  const roleId = decodedToken["role_id"];
+  const roleId = decodedToken["roleId"];
 
   const authorizationRepository = new AuthorizationRepositoryTypeOrm();
 
@@ -72,4 +63,17 @@ export const authenticationMiddleware = async (
   }
 
   next();
+};
+
+export const verifyToken = async (req: Request, res: Response) => {
+  const token = req.header("Authorization")?.replace("Bearer ", "");
+
+  if (!token)
+    return res.status(401).json({
+      sucess: false,
+      message: "token not provided",
+    });
+
+  const verifyToken = new VerifyTokenLoginProvider();
+  return await verifyToken.handle(token);
 };
