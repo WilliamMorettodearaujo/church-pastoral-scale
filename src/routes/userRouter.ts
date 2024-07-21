@@ -3,6 +3,7 @@ import { CreateUserController } from "../controllers/users/createUserController"
 import { GetOneUserController } from "../controllers/users/getOneUserController";
 import { ListUserController } from "../controllers/users/listUserController";
 import { UpdateUserController } from "../controllers/users/updateUserController";
+import { verifyToken } from "../middleware/authenticationMiddleware";
 import { use } from "./middlewares/exeptions";
 
 export const userRoutes = Router();
@@ -25,9 +26,10 @@ userRoutes.get(
 );
 
 userRoutes.get(
-  "/church/:churchId",
+  "/",
   use((req: Request, res: Response) => {
-    const churchId = parseInt(req.params.churchId);
+    const decodeToken = verifyToken(req, res);
+    const churchId = decodeToken["churchId"];
     const controller = new ListUserController();
     return controller.handle(churchId, res);
   })

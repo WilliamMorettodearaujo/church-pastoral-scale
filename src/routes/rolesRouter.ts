@@ -3,6 +3,7 @@ import { CreateRoleController } from "../controllers/roles/createRoleController"
 import { GetOneRoleController } from "../controllers/roles/getOneRoleController";
 import { ListRoleController } from "../controllers/roles/listRoleController";
 import { UpdateRoleController } from "../controllers/roles/updateRoleController";
+import { verifyToken } from "../middleware/authenticationMiddleware";
 import { use } from "./middlewares/exeptions";
 
 export const roleRoutes = Router();
@@ -25,9 +26,10 @@ roleRoutes.get(
 );
 
 roleRoutes.get(
-  "/church/:churchId",
+  "/",
   use((req: Request, res: Response) => {
-    const churchId = parseInt(req.params.churchId);
+    const decodeToken = verifyToken(req, res);
+    const churchId = decodeToken["churchId"];
     const controller = new ListRoleController();
     return controller.handle(churchId, res);
   })

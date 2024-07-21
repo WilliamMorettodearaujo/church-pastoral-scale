@@ -10,7 +10,10 @@ export default class AuthenticationRepositoryTypeOrm
 
   churchRepository = AppDataSource.getRepository(ChurchEntity);
   async login(email: string): Promise<UserEntity> {
-    return await this.userRepository.findOne({ where: { email } });
+    return await this.userRepository.findOne({
+      where: { email },
+      relations: ["church"],
+    });
   }
   async forgotPassword(
     email: string,

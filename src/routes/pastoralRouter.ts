@@ -3,6 +3,7 @@ import { CreatePastoralController } from "../controllers/pastorals/createPastora
 import { GetOnePastoralController } from "../controllers/pastorals/getOnePastoralController";
 import { ListPastoralController } from "../controllers/pastorals/listPastoralController";
 import { UpdatePastoralController } from "../controllers/pastorals/updatePastoralController";
+import { verifyToken } from "../middleware/authenticationMiddleware";
 import { use } from "./middlewares/exeptions";
 
 export const pastoralRoutes = Router();
@@ -25,9 +26,10 @@ pastoralRoutes.get(
 );
 
 pastoralRoutes.get(
-  "/church/:churchId",
+  "/",
   use((req: Request, res: Response) => {
-    const churchId = parseInt(req.params.churchId);
+    const decodeToken = verifyToken(req, res);
+    const churchId = decodeToken["churchId"];
     const controller = new ListPastoralController();
     return controller.handle(churchId, res);
   })
